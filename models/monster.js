@@ -11,7 +11,20 @@ const attackSchema = new mongoose.Schema({
 
 const monsterSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  type: { type: String, required: true },
+  type: {
+    type: String,
+    enum: [
+      "Undead",
+      "Fae",
+      "Beast",
+      "Spirit",
+      "Cybernetic",
+      "Unknown",
+      "Alien",
+      "Human",
+    ],
+    required: true,
+  },
   description: { type: String },
   image: { type: String },
   armor: { type: Number, min: 0 },

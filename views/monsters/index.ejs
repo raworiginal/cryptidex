@@ -5,7 +5,7 @@
   <h1>All Known Monsters</h1>
   <% monsters.forEach(monster =>{%>
     <article>
-      <a href="/:monsterId">
+      <a href="/monsters/<%= monster._id %>">
         <h3><%= monster.name %></h3>
         <p><%= monster.type %></p>
       </a>

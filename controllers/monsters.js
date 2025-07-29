@@ -37,6 +37,17 @@ router.get("/", async (req, res) => {
     res.redirect("/");
   }
 });
+router.get("/:monsterId", async (req, res) => {
+  try {
+    const populatedMonster = await Monster.findById(
+      req.params.monsterId
+    ).populate("creator");
+    res.send(`This will be the page for ${populatedMonster.name}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
 /* ===================== UPDATE ===================== */
 /* ===================== DELETE ===================== */
 

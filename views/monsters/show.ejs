@@ -1,0 +1,30 @@
+<%- include('../partials/_html-head.ejs', {title: monster.name}) %> 
+<%-include('../partials/_nav-bar.ejs') %>
+
+<main>
+  <article>
+    <h1><%=monster.name%></h1>
+    <p><%= monster.type %></p>
+    <h4>Description</h4>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, id, deleniti ut culpa rerum molestias sed sapiente et ex quasi esse odio illo alias velit. Porro dolores nam impedit non?
+    </p>
+    <p><strong>Weakness: </strong><%= monster.weakness %></p>
+    <p><strong>Armor: </strong><%= monster.armor %></p>
+    <p><strong>Attacks:</strong></p>
+    <% if (monster.attacks.length === 0) { %>
+      <p>No known attacks</p>
+    <% }%>
+    <button>Add Attack</button>
+    <button>Edit</button>
+    <button>Delete</button>
+    <button>Copy</button>
+    <button>Track this monster</button>
+  </article>
+  <dialog>
+
+  </dialog>
+</main>
+
+</body>
+</html>

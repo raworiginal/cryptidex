@@ -7,9 +7,9 @@
     <article>
       <a href="/monsters/<%= monster._id %>">
         <h3><%= monster.name %></h3>
-        <p><%= monster.type %></p>
       </a>
-        <p>Discover by: <%= monster.creator.username %></p>
+        <p><%= monster.type %></p>
+        <p>Discovered by: <%= monster.creator.username %></p>
       </article>
   <% }) %>
 </main>

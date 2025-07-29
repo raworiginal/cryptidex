@@ -42,7 +42,10 @@ router.get("/:monsterId", async (req, res) => {
     const populatedMonster = await Monster.findById(
       req.params.monsterId
     ).populate("creator");
-    res.send(`This will be the page for ${populatedMonster.name}`);
+    // res.send(`This will be the page for ${populatedMonster.name}`);
+    res.render("monsters/show.ejs", {
+      monster: populatedMonster,
+    });
   } catch (error) {
     console.error(error);
     res.redirect("/");

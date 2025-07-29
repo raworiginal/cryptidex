@@ -4,10 +4,8 @@
 
   <main>
     <% if (user) { %>
-    <h1>Welcome to the app, <%= user.username %>!</h1>
-    <p>
-      <a href="/auth/sign-out">Sign-Out</a>
-    </p>
+    <h1>Welcome to the CRYPTIDEX, <%= user.username %>!</h1>
+    <h2>Here are your currently tracked Monsters</h2>
     <% } else { %>
     <h1>Welcome to the app!</h1>
     <a href="/auth/sign-up">Sign up</a>

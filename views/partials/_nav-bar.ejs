@@ -1,13 +1,14 @@
 <header>
   <nav>
     <ul>
-      <li><strong>appName</strong></li>
+      <li>
+        <a href="/"><strong>CRYPTIDEX</strong></a>
+      </li>
     </ul>
     <ul>
-      <li><a href="/">Home</a></li>
       <% if (user) { %>
-      <li><a href="/monsters">View All Monsters</a></li>
-      <li><a href="#">Link 2</a></li>
+      <li><a href="/monsters">All Monsters</a></li>
+      <li><a href="/monsters/new">New Monster</a></li>
       <li><a href="/auth/sign-out">Sign Out</a></li>
       <% } else { %>
       <li><a href="/auth/sign-in">Sign In</a></li>

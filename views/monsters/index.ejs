@@ -3,6 +3,15 @@
 
 <main>
   <h1>All Known Monsters</h1>
+  <% monsters.forEach(monster =>{%>
+    <article>
+      <a href="/:monsterId">
+        <h3><%= monster.name %></h3>
+        <p><%= monster.type %></p>
+      </a>
+        <p>Discover by: <%= monster.creator.username %></p>
+      </article>
+  <% }) %>
 </main>
 
 </body>

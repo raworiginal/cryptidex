@@ -29,7 +29,9 @@ router.get("/", async (req, res) => {
   try {
     const populatedMonsters = await Monster.find({}).populate("creator");
     console.log(populatedMonsters);
-    res.render("monsters/index.ejs");
+    res.render("monsters/index.ejs", {
+      monsters: populatedMonsters,
+    });
   } catch (error) {
     console.error(error);
     res.redirect("/");

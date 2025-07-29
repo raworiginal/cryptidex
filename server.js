@@ -1,3 +1,4 @@
+/* ================== Dependencies ================== */
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
@@ -8,6 +9,7 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require("express-session");
 const authController = require("./controllers/auth.js");
+const monstersController = require("./controllers/monsters.js");
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 const MongoStore = require("connect-mongo");
@@ -15,6 +17,7 @@ mongoose.connect(process.env.MONGODB_URI);
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
+/* ================== Middleware ================== */
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
@@ -39,15 +42,15 @@ app.use(
 
 app.use(passUserToView);
 
+/* ================== ROUTES ================== */
 app.get("/", async (req, res) => {
   res.render("index.ejs");
 });
 
 app.use("/auth", authController);
+app.use("/monsters", monstersController);
 
-app.get("/vip-lounge", isSignedIn, (req, res) => {
-  res.send(`Welcome to the party ${req.session.user.username}`);
-});
+/* ================== SERVER ================== */
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

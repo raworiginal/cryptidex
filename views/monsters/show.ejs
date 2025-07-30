@@ -6,7 +6,7 @@
     <p><%= monster.type %></p>
     <h4>Description</h4>
     <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, id, deleniti ut culpa rerum molestias sed sapiente et ex quasi esse odio illo alias velit. Porro dolores nam impedit non?
+      <%= monster.description %>
     </p>
     <p><strong>Weakness: </strong><%= monster.weakness %></p>
     <p><strong>Armor: </strong><%= monster.armor %></p>
@@ -49,7 +49,7 @@
   </article>
 
   <dialog id="add-attack-form">
-    <form action="/monsters/<%= monster._id %>?_method=PUT" method="POST">
+    <form action="/monsters/<%= monster._id %>/attacks?_method=PUT" method="POST">
       <h3>Add Attack</h3>
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required>
@@ -61,7 +61,7 @@
       <button type="submit">Add</button>
     </form>
   </dialog>
-  
+
 </main>
 <script src="/js/modal.js"></script>
 </body>

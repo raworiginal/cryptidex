@@ -52,7 +52,7 @@ router.get("/:monsterId", async (req, res) => {
 });
 /* ===================== UPDATE ===================== */
 //Add attacks
-router.put("/:monsterId/", async (req, res) => {
+router.put("/:monsterId/attacks", async (req, res) => {
   try {
     await Monster.findByIdAndUpdate(req.params.monsterId, {
       $push: { attacks: req.body },
@@ -65,9 +65,28 @@ router.put("/:monsterId/", async (req, res) => {
 });
 
 //Edit Monster
-router.get("/:monsterId/edit", (req, res) => {
+router.get("/:monsterId/edit", async (req, res) => {
   try {
-    res.send(`This is the edit page for monster ${req.params.monsterId}`);
+    const currentMonster = await Monster.findById(req.params.monsterId);
+    res.render("monsters/edit.ejs", {
+      monster: currentMonster,
+    });
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
+
+router.put("/:monsterId/", async (req, res) => {
+  try {
+    const currentMonster = await Monster.findById(req.params.monsterId);
+    if (currentMonster.creator.equals(req.session.user._id)) {
+      console.log(req.body);
+      await currentMonster.updateOne(req.body);
+      res.redirect(`/monsters/${req.params.monsterId}`);
+    } else {
+      res.send("You do not have edit permission for this monster.");
+    }
   } catch (error) {
     console.error(error);
     res.redirect("/");

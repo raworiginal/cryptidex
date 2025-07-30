@@ -1,6 +1,5 @@
 <%- include('../partials/_html-head.ejs', {title: monster.name}) %> 
 <%-include('../partials/_nav-bar.ejs') %>
-
 <main>
   <article>
     <h1><%=monster.name%></h1>
@@ -15,35 +14,38 @@
     <% if (monster.attacks.length === 0) { %>
       <p>No known attacks</p>
     <% } else {%>
-        <ul>
-        <% monster.attacks.forEach(attack=>{ %>
-          <li style="text-decoration: none;">
-              <details name="<%= attack.name %>">
-                <summary><h5><%= attack.name %></h5></summary>
-                <article>
+      <ul>
+      <% monster.attacks.forEach(attack=>{ %>
+        <li style="text-decoration: none;">
+          <details name="<%= attack.name %>">
+            <summary><h5><%= attack.name %></h5></summary>
+            <article>
 
-                  <p><strong>Harm:</strong> <%= attack.harm %></p>
-                  <p><strong>Description:</strong></p> 
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, id, deleniti ut culpa rerum molestias sed sapiente et ex quasi esse odio illo alias velit. Porro dolores nam impedit non?</p>
-                  <div role="group">
-                    <button>edit</button>
-                    <button>delete</button>
-                  </div>
-                </article>
-              </details>
-          </li>  
-        <% }) %>
-      <% } %>
-        </ul>
-      
-   <% if (monster.creator._id.equals(user._id)){ %>
+              <p><strong>Harm:</strong> <%= attack.harm %></p>
+              <p><strong>Description:</strong></p> 
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, id, deleniti ut culpa rerum molestias sed sapiente et ex quasi esse odio illo alias velit. Porro dolores nam impedit non?</p>
+              <div role="group">
+                <button>edit</button>
+                <button>delete</button>
+              </div>
+            </article>
+          </details>
+        </li>  
+      <% }) %>
+    <% } %>
+      </ul>
+
+    <% if (monster.creator._id.equals(user._id)){ %>
       <button id="add-attack-btn">Add Attack</button>
-      <button>Edit</button>
-      <button>Delete</button>
+      <a role="button" href="/monsters/<%= monster._id %>/edit">Edit</a>
+      <form action="" method="post">
+        <button role="button" type="submit">Delete</button>
+      </form>
     <% } else { %>
       <button>Copy</button>
       <button>Track this monster</button>
     <% } %>
+
   </article>
 
   <dialog id="add-attack-form">
@@ -58,7 +60,8 @@
 
       <button type="submit">Add</button>
     </form>
-</dialog>
+  </dialog>
+  
 </main>
 <script src="/js/modal.js"></script>
 </body>

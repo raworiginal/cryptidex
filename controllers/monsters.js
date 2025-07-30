@@ -51,12 +51,23 @@ router.get("/:monsterId", async (req, res) => {
   }
 });
 /* ===================== UPDATE ===================== */
+//Add attacks
 router.put("/:monsterId/", async (req, res) => {
   try {
     await Monster.findByIdAndUpdate(req.params.monsterId, {
       $push: { attacks: req.body },
     });
     res.redirect(`/monsters/${req.params.monsterId}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
+
+//Edit Monster
+router.get("/:monsterId/edit", (req, res) => {
+  try {
+    res.send(`This is the edit page for monster ${req.params.monsterId}`);
   } catch (error) {
     console.error(error);
     res.redirect("/");

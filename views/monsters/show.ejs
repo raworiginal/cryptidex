@@ -20,14 +20,15 @@
           <details name="<%= attack.name %>">
             <summary><h5><%= attack.name %></h5></summary>
             <article>
-
               <p><strong>Harm:</strong> <%= attack.harm %></p>
               <p><strong>Description:</strong></p> 
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, id, deleniti ut culpa rerum molestias sed sapiente et ex quasi esse odio illo alias velit. Porro dolores nam impedit non?</p>
-              <div role="group">
-                <button id="edit-attack-btn">edit</button>
+                  <button id="<%= attack._id %>" class="edit-attack-btn">
+                    edit
+                  </button>
+                </form>
                 <button>delete</button>
-              </div>
+                <%- include('../partials/_edit-attack.ejs', { attack }) %>
             </article>
           </details>
         </li>  

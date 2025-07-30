@@ -1,0 +1,30 @@
+<dialog id="modal-<%= attack._id %>">
+  <form
+    action="/monsters/<%= monster._id %>/attacks/<%= attack._id %>?_method=PUT"
+    method="POST"
+  >
+    <h3>Edit Attack</h3>
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      value="<%= attack.name %>"
+      required
+    />
+    <label for="description">Description: </label>
+    <textarea id="description" name="description">
+<%= attack.description %></textarea
+    >
+    <label for="harm">Harm:</label>
+    <input
+      type="number"
+      name="harm"
+      id="harm"
+      min="0"
+      value="<%=attack.harm%>"
+    />
+
+    <button type="submit">Edit "<%= attack.name %>"</button>
+  </form>
+</dialog>

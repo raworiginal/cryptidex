@@ -92,6 +92,19 @@ router.put("/:monsterId/", async (req, res) => {
     res.redirect("/");
   }
 });
+
+router.put("/:monsterId/attacks/:attackId", async (req, res) => {
+  try {
+    const currentMonster = await Monster.findById(req.params.monsterId);
+    const attack = currentMonster.attacks.id(req.params.attackId);
+    attack.set(req.body);
+    await currentMonster.save();
+    res.redirect(`/monsters/${currentMonster._id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
 /* ===================== DELETE ===================== */
 
 /* ================== Exports ================== */

@@ -14,17 +14,52 @@
     <p><strong>Attacks:</strong></p>
     <% if (monster.attacks.length === 0) { %>
       <p>No known attacks</p>
-    <% }%>
-    <button>Add Attack</button>
-    <button>Edit</button>
-    <button>Delete</button>
-    <button>Copy</button>
-    <button>Track this monster</button>
+    <% } else {%>
+        <ul>
+        <% monster.attacks.forEach(attack=>{ %>
+          <li style="text-decoration: none;">
+              <details name="<%= attack.name %>">
+                <summary><h5><%= attack.name %></h5></summary>
+                <article>
+
+                  <p><strong>Harm:</strong> <%= attack.harm %></p>
+                  <p><strong>Description:</strong></p> 
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, id, deleniti ut culpa rerum molestias sed sapiente et ex quasi esse odio illo alias velit. Porro dolores nam impedit non?</p>
+                  <div role="group">
+                    <button>edit</button>
+                    <button>delete</button>
+                  </div>
+                </article>
+              </details>
+          </li>  
+        <% }) %>
+      <% } %>
+        </ul>
+      
+   <% if (monster.creator._id.equals(user._id)){ %>
+      <button id="add-attack-btn">Add Attack</button>
+      <button>Edit</button>
+      <button>Delete</button>
+    <% } else { %>
+      <button>Copy</button>
+      <button>Track this monster</button>
+    <% } %>
   </article>
-  <dialog>
 
-  </dialog>
+  <dialog id="add-attack-form">
+    <form action="/monsters/<%= monster._id %>?_method=PUT" method="POST">
+      <h3>Add Attack</h3>
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" required>
+      <label for="description">Description: </label>
+      <textarea id="description" name="description"></textarea>
+      <label for="harm">Harm:</label>
+      <input type="number" name="harm" id="harm" min="0" value="0">
+
+      <button type="submit">Add</button>
+    </form>
+</dialog>
 </main>
-
+<script src="/js/modal.js"></script>
 </body>
 </html>

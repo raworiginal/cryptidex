@@ -28,7 +28,6 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const populatedMonsters = await Monster.find({}).populate("creator");
-    console.log(populatedMonsters);
     res.render("monsters/index.ejs", {
       monsters: populatedMonsters,
     });
@@ -52,6 +51,17 @@ router.get("/:monsterId", async (req, res) => {
   }
 });
 /* ===================== UPDATE ===================== */
+router.put("/:monsterId/", async (req, res) => {
+  try {
+    await Monster.findByIdAndUpdate(req.params.monsterId, {
+      $push: { attacks: req.body },
+    });
+    res.redirect(`/monsters/${req.params.monsterId}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
 /* ===================== DELETE ===================== */
 
 /* ================== Exports ================== */

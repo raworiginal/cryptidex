@@ -24,6 +24,18 @@ router.post("/", async (req, res) => {
     res.redirect("/");
   }
 });
+//Add attacks to monster.
+router.put("/:monsterId/attacks", async (req, res) => {
+  try {
+    await Monster.findByIdAndUpdate(req.params.monsterId, {
+      $push: { attacks: req.body },
+    });
+    res.redirect(`/monsters/${req.params.monsterId}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
 /* ===================== READ ROUTES ===================== */
 router.get("/", async (req, res) => {
   try {
@@ -51,18 +63,6 @@ router.get("/:monsterId", async (req, res) => {
   }
 });
 /* ===================== UPDATE ===================== */
-//Add attacks
-router.put("/:monsterId/attacks", async (req, res) => {
-  try {
-    await Monster.findByIdAndUpdate(req.params.monsterId, {
-      $push: { attacks: req.body },
-    });
-    res.redirect(`/monsters/${req.params.monsterId}`);
-  } catch (error) {
-    console.error(error);
-    res.redirect("/");
-  }
-});
 
 //Edit Monster
 router.get("/:monsterId/edit", async (req, res) => {

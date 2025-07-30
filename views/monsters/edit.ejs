@@ -10,6 +10,7 @@
 
       <label for="type">Monster Type: </label>
       <select name="type" id="type">
+        <option value="<%= monster.type %>"><%= monster.type %></option>
         <option value="Unknown">Unknown</option>
         <option value="Beast">Beast</option>
         <option value="Cybernetic">Cybernetic</option>
@@ -26,7 +27,7 @@
       <input type="text" name="weakness" id="weakness" value="<%= monster.weakness %>">
       
       <label for="description">Description:</label>
-      <textarea name="description" id="description" rows="5" value="<%= monster.value %>"></textarea>
+      <textarea name="description" id="description" rows="5"><%= monster.description %></textarea>
       
       <label for="armor">Armor:</label>
       <input type="number" name="armor" id="armor" min="0" value="<%= monster.armor %>">

@@ -1,16 +1,17 @@
-<%- include('./partials/_html-head.ejs', {title: 'Home'}) %>
-<%- include('./partials/_nav-bar.ejs') %>
-
-
-  <main>
-    <% if (user) { %>
-    <h1>Welcome to the CRYPTIDEX, <%= user.username %>!</h1>
-    <h2>Here are your currently tracked Monsters</h2>
-    <% } else { %>
-    <h1>Welcome to the app!</h1>
-    <a href="/auth/sign-up">Sign up</a>
-    <a href="/auth/sign-in">sign in</a>
-    <% } %>
-  </main>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/_html-head.ejs', {title: 'Sign-in'}) %>
+  <body>
+    <header><%- include('./partials/_nav-bar.ejs') %></header>
+    <main>
+      <% if (user) { %>
+      <h1>Welcome to the CRYPTIDEX, <%= user.username %>!</h1>
+      <h2>Here are your currently tracked Monsters</h2>
+      <% } else { %>
+      <h1>Welcome to the app!</h1>
+      <a href="/auth/sign-up">Sign up</a>
+      <a href="/auth/sign-in">sign in</a>
+      <% } %>
+    </main>
+  </body>
 </html>

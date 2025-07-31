@@ -1,41 +1,61 @@
-<%- include('../partials/_html-head.ejs', {title: `Edit ${monster.name}`}) %>
-<%-include('../partials/_nav-bar.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/_html-head.ejs', {title: 'Sign-up'}) %>
+  <body>
+    <header><%- include('../partials/_nav-bar.ejs') %></header>
+    <main>
+      <article>
+        <h1>Edit <%= monster.name %> Report</h1>
+        <form action="/monsters/<%= monster._id %>?_method=PUT" method="POST">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value="<%= monster.name %>"
+            required
+          />
 
-<main>
-  <h1>Edit <%= monster.name %> Report</h1>
-    <form action="/monsters/<%= monster._id %>?_method=PUT" method="POST">
+          <label for="type">Monster Type: </label>
+          <select name="type" id="type">
+            <option value="<%= monster.type %>"><%= monster.type %></option>
+            <option value="Unknown">Unknown</option>
+            <option value="Beast">Beast</option>
+            <option value="Cybernetic">Cybernetic</option>
+            <option value="Eldritch Horror">Eldritch Horror</option>
+            <option value="Extraterrestrial">Extraterrestrial</option>
+            <option value="Fae">Fae</option>
+            <option value="Human">Human</option>
+            <option value="Shapechanger">Shapechanger</option>
+            <option value="Spirit">Spirit</option>
+            <option value="Undead">Undead</option>
+          </select>
 
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name" value="<%= monster.name %>" required>
+          <label for="weakness">Weakness</label>
+          <input
+            type="text"
+            name="weakness"
+            id="weakness"
+            value="<%= monster.weakness %>"
+          />
 
-      <label for="type">Monster Type: </label>
-      <select name="type" id="type">
-        <option value="<%= monster.type %>"><%= monster.type %></option>
-        <option value="Unknown">Unknown</option>
-        <option value="Beast">Beast</option>
-        <option value="Cybernetic">Cybernetic</option>
-        <option value="Eldritch Horror">Eldritch Horror</option>
-        <option value="Extraterrestrial">Extraterrestrial</option>
-        <option value="Fae">Fae</option>
-        <option value="Human">Human</option>
-        <option value="Shapechanger">Shapechanger</option>
-        <option value="Spirit">Spirit</option>
-        <option value="Undead">Undead</option>
-      </select>
-      
-      <label for="weakness">Weakness</label>
-      <input type="text" name="weakness" id="weakness" value="<%= monster.weakness %>">
-      
-      <label for="description">Description:</label>
-      <textarea name="description" id="description" rows="5"><%= monster.description %></textarea>
-      
-      <label for="armor">Armor:</label>
-      <input type="number" name="armor" id="armor" min="0" value="<%= monster.armor %>">
-      
-      <button type="submit">Edit <%= monster.name %></button>
+          <label for="description">Description:</label>
+          <textarea name="description" id="description" rows="5">
+<%= monster.description %></textarea
+          >
 
-    </form>
-  </article>
-</main>
-</body>
+          <label for="armor">Armor:</label>
+          <input
+            type="number"
+            name="armor"
+            id="armor"
+            min="0"
+            value="<%= monster.armor %>"
+          />
+
+          <button type="submit">Edit <%= monster.name %></button>
+        </form>
+      </article>
+    </main>
+  </body>
 </html>

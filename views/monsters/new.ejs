@@ -1,42 +1,41 @@
-<%- include('../partials/_html-head.ejs', {title: 'New Monster'}) %> 
-<%-include('../partials/_nav-bar.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/_html-head.ejs', {title: 'Sign-up'}) %>
+  <body>
+    <header><%- include('../partials/_nav-bar.ejs') %></header>
+    <main>
+      <article class="monster-form">
+        <h1>Report a New Monster</h1>
+        <form action="/monsters" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" required />
 
-<main>
-  <article class="monster-form">
-    <h1>Report a New Monster</h1>
-    <form action="/monsters" method="POST">
+          <label for="type">Monster Type: </label>
+          <select name="type" id="type">
+            <option value="Unknown">Unknown</option>
+            <option value="Beast">Beast</option>
+            <option value="Cybernetic">Cybernetic</option>
+            <option value="Eldritch Horror">Eldritch Horror</option>
+            <option value="Extraterrestrial">Extraterrestrial</option>
+            <option value="Fae">Fae</option>
+            <option value="Human">Human</option>
+            <option value="Shapechanger">Shapechanger</option>
+            <option value="Spirit">Spirit</option>
+            <option value="Undead">Undead</option>
+          </select>
 
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name" required>
+          <label for="weakness">Weakness</label>
+          <input type="text" name="weakness" id="weakness" />
 
-      <label for="type">Monster Type: </label>
-      <select name="type" id="type">
-        <option value="Unknown">Unknown</option>
-        <option value="Beast">Beast</option>
-        <option value="Cybernetic">Cybernetic</option>
-        <option value="Eldritch Horror">Eldritch Horror</option>
-        <option value="Extraterrestrial">Extraterrestrial</option>
-        <option value="Fae">Fae</option>
-        <option value="Human">Human</option>
-        <option value="Shapechanger">Shapechanger</option>
-        <option value="Spirit">Spirit</option>
-        <option value="Undead">Undead</option>
-      </select>
-      
-      <label for="weakness">Weakness</label>
-      <input type="text" name="weakness" id="weakness">
-      
-      <label for="description">Description:</label>
-      <textarea name="description" id="description" rows="5"></textarea>
-      
-      <label for="armor">Armor:</label>
-      <input type="number" name="armor" id="armor" min="0">
-      
-      <button type="submit">Add Monster</button>
+          <label for="description">Description:</label>
+          <textarea name="description" id="description" rows="5"></textarea>
 
-    </form>
-  </article>
-</main>
+          <label for="armor">Armor:</label>
+          <input type="number" name="armor" id="armor" min="0" />
 
-</body>
+          <button type="submit">Add Monster</button>
+        </form>
+      </article>
+    </main>
+  </body>
 </html>

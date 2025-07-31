@@ -21,14 +21,14 @@
             <summary><h5><%= attack.name %></h5></summary>
             <article>
               <p><strong>Harm:</strong> <%= attack.harm %></p>
-              <p><strong>Description:</strong></p> 
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, id, deleniti ut culpa rerum molestias sed sapiente et ex quasi esse odio illo alias velit. Porro dolores nam impedit non?</p>
-                  <button id="<%= attack._id %>" class="edit-attack-btn">
+              <p><strong>Description:</strong></p><%= attack.description %></p>
+              <button id="<%= attack._id %>" class="edit-attack-btn">
                     edit
-                  </button>
-                </form>
-                <button>delete</button>
-                <%- include('../partials/_edit-attack.ejs', { attack }) %>
+              </button>
+              <form action="/monsters/<%= monster._id %>/attacks/<%= attack._id %>?_method=DELETE" method="POST">
+                <button type="submit">delete</button>
+              </form>
+              <%- include('../partials/_edit-attack.ejs', { attack }) %>
             </article>
           </details>
         </li>  
@@ -39,8 +39,8 @@
     <% if (monster.creator._id.equals(user._id)){ %>
       <button id="add-attack-btn">Add Attack</button>
       <a role="button" href="/monsters/<%= monster._id %>/edit">Edit</a>
-      <form action="" method="post">
-        <button role="button" type="submit">Delete</button>
+      <form action="/monsters/<%= monster._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete Monster</button>
       </form>
     <% } else { %>
       <button>Copy</button>
@@ -62,19 +62,6 @@
       <button type="submit">Add</button>
     </form>
 
-  </dialog>
-    <dialog id="edit-attack-form">
-    <form action="/monsters/<%= monster._id %>/attacks?_method=PUT" method="POST">
-      <h3>Add Attack</h3>
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name" required>
-      <label for="description">Description: </label>
-      <textarea id="description" name="description"></textarea>
-      <label for="harm">Harm:</label>
-      <input type="number" name="harm" id="harm" min="0" value="0">
-      <button type="submit">Add</button>
-    </form>
-  </dialog>
 
 </main>
 <script src="/js/modal.js"></script>

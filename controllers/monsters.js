@@ -106,6 +106,26 @@ router.put("/:monsterId/attacks/:attackId", async (req, res) => {
   }
 });
 /* ===================== DELETE ===================== */
+router.delete("/:monsterId", async (req, res) => {
+  try {
+    await Monster.findByIdAndDelete(req.params.monsterId);
+    res.redirect(`/monsters`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
+router.delete("/:monsterId/attacks/:attackId", async (req, res) => {
+  try {
+    const currentMonster = await Monster.findById(req.params.monsterId);
+    currentMonster.attacks.pull(req.params.attackId);
+    await currentMonster.save();
+    res.redirect(`/monsters/${currentMonster._id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
 
 /* ================== Exports ================== */
 module.exports = router;

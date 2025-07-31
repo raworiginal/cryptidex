@@ -43,9 +43,17 @@
         <button type="submit">Delete Monster</button>
       </form>
     <% } else { %>
-      <button>Copy</button>
-      <button>Track this monster</button>
-    <% } %>
+      <% if (userHasFavorited) { %>
+        <form action="/monsters/<%= monster._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
+          <button type="submit">Untrack this monster</button>
+        </form>
+      <% } else { %>
+          <form action="/monsters/<%= monster._id %>/favorited-by/<%= user._id %>" method="POST">
+            <button type="submit">Track this monster</button>
+          </form>
+      <% } %>
+      <% } %>
+    <p>Tracked by <%= monster.favoritedByUsers.length %> other hunters.</p>
 
   </article>
 

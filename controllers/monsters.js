@@ -36,6 +36,19 @@ router.put("/:monsterId/attacks", async (req, res) => {
     res.redirect("/");
   }
 });
+
+//Add user to favorited-by
+router.post("/:monsterId/favorited-by/:userId", async (req, res) => {
+  try {
+    await Monster.findByIdAndUpdate(req.params.monsterId, {
+      $push: { favoritedByUsers: req.params.userId },
+    });
+    res.redirect(`/monsters/${req.params.monsterId}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
 /* ===================== READ ROUTES ===================== */
 router.get("/", async (req, res) => {
   try {
@@ -53,9 +66,13 @@ router.get("/:monsterId", async (req, res) => {
     const populatedMonster = await Monster.findById(
       req.params.monsterId
     ).populate("creator");
-    // res.send(`This will be the page for ${populatedMonster.name}`);
+
+    const userHasFavorited = populatedMonster.favoritedByUsers.some((user) => {
+      return user.equals(req.session.user._id);
+    });
     res.render("monsters/show.ejs", {
       monster: populatedMonster,
+      userHasFavorited: userHasFavorited,
     });
   } catch (error) {
     console.error(error);
@@ -106,6 +123,7 @@ router.put("/:monsterId/attacks/:attackId", async (req, res) => {
   }
 });
 /* ===================== DELETE ===================== */
+//Delete a monster
 router.delete("/:monsterId", async (req, res) => {
   try {
     await Monster.findByIdAndDelete(req.params.monsterId);
@@ -115,6 +133,8 @@ router.delete("/:monsterId", async (req, res) => {
     res.redirect("/");
   }
 });
+
+//Delete an attack from monster
 router.delete("/:monsterId/attacks/:attackId", async (req, res) => {
   try {
     const currentMonster = await Monster.findById(req.params.monsterId);
@@ -127,6 +147,18 @@ router.delete("/:monsterId/attacks/:attackId", async (req, res) => {
   }
 });
 
+//Unfavorite a monster
+router.delete("/:monsterId/favorited-by/:userId", async (req, res) => {
+  try {
+    await Monster.findByIdAndUpdate(req.params.monsterId, {
+      $pull: { favoritedByUsers: req.params.userId },
+    });
+    res.redirect(`/monsters/${req.params.monsterId}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
 /* ================== Exports ================== */
 module.exports = router;
 

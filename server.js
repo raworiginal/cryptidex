@@ -45,7 +45,15 @@ app.use(passUserToView);
 
 /* ================== ROUTES ================== */
 app.get("/", async (req, res) => {
-  res.render("index.ejs");
+  if (req.session.user) {
+    try {
+      console.log("banana");
+      res.redirect(`users/${req.session.user._id}`);
+    } catch (error) {
+      console.log(error);
+      res.render("index.ejs");
+    }
+  }
 });
 
 app.use("/auth", authController);

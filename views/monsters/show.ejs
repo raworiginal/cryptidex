@@ -22,13 +22,15 @@
             <article>
               <p><strong>Harm:</strong> <%= attack.harm %></p>
               <p><strong>Description:</strong></p><%= attack.description %></p>
-              <button id="<%= attack._id %>" class="edit-attack-btn">
-                    edit
-              </button>
-              <form action="/monsters/<%= monster._id %>/attacks/<%= attack._id %>?_method=DELETE" method="POST">
-                <button type="submit">delete</button>
-              </form>
-              <%- include('../partials/_edit-attack.ejs', { attack }) %>
+              <% if (monster.creator._id.equals(user._id)){ %>
+                <button id="<%= attack._id %>" class="edit-attack-btn">
+                  edit
+                </button>
+                <form action="/monsters/<%= monster._id %>/attacks/<%= attack._id %>?_method=DELETE" method="POST">
+                  <button type="submit">delete</button>
+                </form>
+                <%- include('../partials/_edit-attack.ejs', { attack }) %>
+              <% } %>
             </article>
           </details>
         </li>  

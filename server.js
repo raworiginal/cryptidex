@@ -10,6 +10,7 @@ const morgan = require("morgan");
 const session = require("express-session");
 const authController = require("./controllers/auth.js");
 const monstersController = require("./controllers/monsters.js");
+const usersController = require("./controllers/users.js");
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 const MongoStore = require("connect-mongo");
@@ -49,6 +50,7 @@ app.get("/", async (req, res) => {
 
 app.use("/auth", authController);
 app.use("/monsters", monstersController);
+app.use("/users", usersController);
 
 /* ================== SERVER ================== */
 

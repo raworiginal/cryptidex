@@ -17,7 +17,6 @@ router.post("/", async (req, res) => {
   try {
     req.body.creator = req.session.user._id;
     await Monster.create(req.body);
-    console.log(req.body);
     res.redirect("/monsters");
   } catch (error) {
     console.error(error);

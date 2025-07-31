@@ -17,7 +17,7 @@
         <% } else {%>
         <ul>
           <% monster.attacks.forEach(attack=>{ %>
-          <li style="text-decoration: none">
+          <li>
             <details name="<%= attack.name %>">
               <summary><h5><%= attack.name %></h5></summary>
               <article>
@@ -83,7 +83,6 @@
 
           <button type="submit">Add</button>
         </form>
-
         <script src="/js/modal.js"></script>
       </dialog>
     </main>

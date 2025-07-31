@@ -5,13 +5,15 @@
     <header><%- include('../partials/_nav-bar.ejs') %></header>
     <main>
       <h1>All Known Monsters</h1>
-      <% monsters.forEach(monster =>{%>
+      <% monsters.forEach((monster) =>{ %>
       <article>
         <a href="/monsters/<%= monster._id %>">
           <h3><%= monster.name %></h3>
         </a>
         <p><%= monster.type %></p>
-        <p>Discovered by: <%= monster.creator.username %></p>
+        <a href="/users/<%= monster.creator._id %>">
+          <p>Discovered by: <%= monster.creator.username %></p>
+        </a>
       </article>
       <% }) %>
     </main>

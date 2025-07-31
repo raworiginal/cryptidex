@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/_html-head.ejs', {title:user.username}) %>
+  <%- include('../partials/_html-head.ejs', {title: currentUser.username}) %>
   <body>
     <header><%- include('../partials/_nav-bar') %></header>
     <main>
-      <h1><%= user.username %>'s Crytidex</h1>
+      <h1><%= currentUser.username %>'s Crytidex</h1>
       <ul>
         <% createdMonsters.forEach(monster => { %>
         <a href="/monsters/<%= monster._id %>">

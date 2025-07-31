@@ -16,8 +16,8 @@ router.get("/new", (req, res) => {
 router.post("/", async (req, res) => {
   try {
     req.body.creator = req.session.user._id;
-    await Monster.create(req.body);
-    res.redirect("/monsters");
+    const currentMonster = await Monster.create(req.body);
+    res.redirect(`/monsters/${currentMonster._id}`);
   } catch (error) {
     console.error(error);
     res.redirect("/");

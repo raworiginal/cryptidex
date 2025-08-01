@@ -3,8 +3,10 @@ const express = require("express");
 const router = express.Router();
 
 const Monster = require("../models/monster.js");
+const User = require("../models/user.js");
 
 /* ===================== CREATE ROUTES ===================== */
+//Get the new monster form
 router.get("/new", (req, res) => {
   try {
     res.render("monsters/new.ejs");
@@ -13,17 +15,23 @@ router.get("/new", (req, res) => {
     res.redirect("/");
   }
 });
+
+//Create new monster and add ref to User
 router.post("/", async (req, res) => {
   try {
     req.body.creator = req.session.user._id;
     const currentMonster = await Monster.create(req.body);
+    await User.findByIdAndUpdate(req.session.user._id, {
+      $push: { createdMonsters: currentMonster },
+    });
     res.redirect(`/monsters/${currentMonster._id}`);
   } catch (error) {
     console.error(error);
     res.redirect("/");
   }
 });
-//Add attacks to monster.
+
+//Add attacks to a monster.
 router.put("/:monsterId/attacks", async (req, res) => {
   try {
     await Monster.findByIdAndUpdate(req.params.monsterId, {
@@ -36,11 +44,16 @@ router.put("/:monsterId/attacks", async (req, res) => {
   }
 });
 
-//Add user to favorited-by
+//Add user to favorited-by and add monster ref to user
 router.post("/:monsterId/favorited-by/:userId", async (req, res) => {
   try {
+    // Add user ref to monster
     await Monster.findByIdAndUpdate(req.params.monsterId, {
       $push: { favoritedByUsers: req.params.userId },
+    });
+    // Add monster ref to user
+    await User.findByIdAndUpdate(req.params.userId, {
+      $push: { favoritedMonsters: req.params.monsterId },
     });
     res.redirect(`/monsters/${req.params.monsterId}`);
   } catch (error) {
@@ -49,9 +62,11 @@ router.post("/:monsterId/favorited-by/:userId", async (req, res) => {
   }
 });
 /* ===================== READ ROUTES ===================== */
+// Get all monsters index page
 router.get("/", async (req, res) => {
   try {
     const populatedMonsters = await Monster.find({}).populate("creator");
+    console.log("Populated Monster:", populatedMonsters);
     res.render("monsters/index.ejs", {
       monsters: populatedMonsters,
     });
@@ -60,6 +75,8 @@ router.get("/", async (req, res) => {
     res.redirect("/");
   }
 });
+
+// Get show page for specific monster
 router.get("/:monsterId", async (req, res) => {
   try {
     const populatedMonster = await Monster.findById(
@@ -80,7 +97,7 @@ router.get("/:monsterId", async (req, res) => {
 });
 /* ===================== UPDATE ===================== */
 
-//Edit Monster
+//Get form to edit a monster
 router.get("/:monsterId/edit", async (req, res) => {
   try {
     const currentMonster = await Monster.findById(req.params.monsterId);
@@ -93,6 +110,7 @@ router.get("/:monsterId/edit", async (req, res) => {
   }
 });
 
+//Update monster
 router.put("/:monsterId/", async (req, res) => {
   try {
     const currentMonster = await Monster.findById(req.params.monsterId);
@@ -109,6 +127,7 @@ router.put("/:monsterId/", async (req, res) => {
   }
 });
 
+// Update an attack
 router.put("/:monsterId/attacks/:attackId", async (req, res) => {
   try {
     const currentMonster = await Monster.findById(req.params.monsterId);
@@ -125,6 +144,10 @@ router.put("/:monsterId/attacks/:attackId", async (req, res) => {
 //Delete a monster
 router.delete("/:monsterId", async (req, res) => {
   try {
+    await User.updateMany(
+      { favoritedMonsters: monsterId },
+      { $pull: { favoritedMonsters: monsterId } }
+    );
     await Monster.findByIdAndDelete(req.params.monsterId);
     res.redirect(`/monsters`);
   } catch (error) {
@@ -151,6 +174,9 @@ router.delete("/:monsterId/favorited-by/:userId", async (req, res) => {
   try {
     await Monster.findByIdAndUpdate(req.params.monsterId, {
       $pull: { favoritedByUsers: req.params.userId },
+    });
+    await User.findByIdAndUpdate(req.params.userId, {
+      $pull: { favoritedMonsters: req.params.monsterId },
     });
     res.redirect(`/monsters/${req.params.monsterId}`);
   } catch (error) {

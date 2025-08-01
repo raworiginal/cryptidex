@@ -5,13 +5,26 @@
     <header><%- include('../partials/_nav-bar') %></header>
     <main>
       <h1><%= currentUser.username %>'s Crytidex</h1>
+      <h3>Monsters Reported:</h3>
+      <% if (createdMonsters.length){ %>
       <ul>
         <% createdMonsters.forEach(monster => { %>
-        <a href="/monsters/<%= monster._id %>">
-          <li><%= monster.name%></li>
-        </a>
+        <li><a href="/monsters/<%= monster._id %>"><%= monster.name %></a></li>
         <% }) %>
       </ul>
+      <% } else {%>
+      <p>You have no reported monsters</p>
+      <% } %>
+      <h3>Monsters Tracked:</h3>
+      <% if (favoritedMonsters.length){ %>
+      <ul>
+        <% favoritedMonsters.forEach(monster => { %>
+        <li><a href="/monsters/<%= monster._id %>"><%= monster.name %></a></li>
+        <% }) %>
+      </ul>
+      <% } else {%>
+      <p>You have no reported monsters</p>
+      <% } %>
     </main>
   </body>
 </html>

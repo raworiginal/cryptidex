@@ -44,15 +44,11 @@ app.use(
 app.use(passUserToView);
 
 /* ================== ROUTES ================== */
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
   if (req.session.user) {
-    try {
-      console.log("banana");
-      res.redirect(`users/${req.session.user._id}`);
-    } catch (error) {
-      console.log(error);
-      res.render("index.ejs");
-    }
+    res.redirect(`users/${req.session.user._id}`);
+  } else {
+    res.render("index.ejs");
   }
 });
 

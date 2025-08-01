@@ -7,12 +7,16 @@ const Monster = require("../models/monster.js");
 /* ================== READ ================== */
 router.get("/:userId", async (req, res) => {
   try {
-    const currentUser = await User.findById(req.params.userId);
-    const createdMonsters = await Monster.find({
-      creator: currentUser,
+    const currentUser = await User.findById(req.params.userId)
+      .populate("favoritedMonsters")
+      .populate("createdMonsters");
+    console.log("Created monsters", currentUser.createdMonsters);
+    console.log("Favorited monsters", currentUser.favoritedMonsters);
+    res.render("users/show.ejs", {
+      currentUser,
+      favoritedMonsters: currentUser.favoritedMonsters,
+      createdMonsters: currentUser.createdMonsters,
     });
-    const favoritedMonsters = await Monster.find({});
-    res.render("users/show.ejs", { currentUser, createdMonsters });
   } catch (error) {
     console.error(error);
     res.redirect("/");

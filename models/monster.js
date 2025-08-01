@@ -41,7 +41,7 @@ const powerSchema = new mongoose.Schema({
 
 const typeSchema = new mongoose.Schema({
   name: { type: String, enum: typeNames, required: true },
-  motivation: { type: String, required: false },
+  motivation: { type: String, required: true },
 });
 
 const monsterSchema = new mongoose.Schema({
@@ -50,7 +50,7 @@ const monsterSchema = new mongoose.Schema({
   description: { type: String },
   weaknesses: { type: [String] },
   armor: { type: Number, min: 0 },
-  harmCapacity: { type: Number, required: false },
+  harmCapacity: { type: Number, required: true },
   attacks: [attackSchema],
   powers: [powerSchema],
   creator: {

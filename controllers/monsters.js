@@ -1,7 +1,6 @@
 /* ================== Dependencies ================== */
 const express = require("express");
 const router = express.Router();
-
 const { Monster, MONSTER_TYPES } = require("../models/monster.js");
 const User = require("../models/user.js");
 

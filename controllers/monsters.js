@@ -66,7 +66,6 @@ router.post("/:monsterId/favorited-by/:userId", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const populatedMonsters = await Monster.find({}).populate("creator");
-    console.log("Populated Monster:", populatedMonsters);
     res.render("monsters/index.ejs", {
       monsters: populatedMonsters,
     });
@@ -115,7 +114,6 @@ router.put("/:monsterId/", async (req, res) => {
   try {
     const currentMonster = await Monster.findById(req.params.monsterId);
     if (currentMonster.creator.equals(req.session.user._id)) {
-      console.log(req.body);
       await currentMonster.updateOne(req.body);
       res.redirect(`/monsters/${req.params.monsterId}`);
     } else {
@@ -145,11 +143,23 @@ router.put("/:monsterId/attacks/:attackId", async (req, res) => {
 router.delete("/:monsterId", async (req, res) => {
   try {
     await User.updateMany(
-      { favoritedMonsters: monsterId },
-      { $pull: { favoritedMonsters: monsterId } }
+      {
+        favoritedMonsters: req.params.monsterId,
+        createdMonsters: req.params.monsterId,
+      },
+      {
+        $pull: {
+          favoritedMonsters: req.params.monsterId,
+          createdMonsters: req.params.monsterId,
+        },
+      }
     );
+    // await User.updateMany(
+    //   { createdMonsters: req.params.monsterId },
+    //   { $pull: { createdMonsters: req.params.monsterId } }
+    // );
     await Monster.findByIdAndDelete(req.params.monsterId);
-    res.redirect(`/monsters`);
+    res.redirect(`/users/${req.session.user._id}`);
   } catch (error) {
     console.error(error);
     res.redirect("/");

@@ -2,14 +2,14 @@
 const express = require("express");
 const router = express.Router();
 
-const Monster = require("../models/monster.js");
+const { Monster, MONSTER_TYPES } = require("../models/monster.js");
 const User = require("../models/user.js");
 
 /* ===================== CREATE ROUTES ===================== */
 //Get the new monster form
 router.get("/new", (req, res) => {
   try {
-    res.render("monsters/new.ejs");
+    res.render("monsters/new.ejs", { types: MONSTER_TYPES });
   } catch (error) {
     console.error(error);
     res.redirect("/");
@@ -20,6 +20,9 @@ router.get("/new", (req, res) => {
 router.post("/", async (req, res) => {
   try {
     req.body.creator = req.session.user._id;
+    req.body.type = MONSTER_TYPES[req.body.type];
+    req.body.weaknesses = req.body.weaknesses.toLowerCase().split(", ");
+    console.log(req.body);
     const currentMonster = await Monster.create(req.body);
     await User.findByIdAndUpdate(req.session.user._id, {
       $push: { createdMonsters: currentMonster },

@@ -6,7 +6,8 @@
     <main>
       <article>
         <h1><%=monster.name%></h1>
-        <p><%= monster.type %></p>
+        <p><%= monster.type.name %></p>
+        <p><strong>motivation:</strong> <%= monster.type.motivation %></p>
         <h4>Description</h4>
         <p><%= monster.description %></p>
         <p><strong>Weakness: </strong><%= monster.weakness %></p>

@@ -12,26 +12,22 @@
 
           <label for="type">Monster Type: </label>
           <select name="type" id="type">
-            <option value="Unknown">Unknown</option>
-            <option value="Beast">Beast</option>
-            <option value="Cybernetic">Cybernetic</option>
-            <option value="Eldritch Horror">Eldritch Horror</option>
-            <option value="Extraterrestrial">Extraterrestrial</option>
-            <option value="Fae">Fae</option>
-            <option value="Human">Human</option>
-            <option value="Shapechanger">Shapechanger</option>
-            <option value="Spirit">Spirit</option>
-            <option value="Undead">Undead</option>
+            <% types.forEach((type, index) =>{ %>
+            <option value="<%= index %>"><%= type.name %></option>
+            <% }); %>
           </select>
 
-          <label for="weakness">Weakness</label>
-          <input type="text" name="weakness" id="weakness" />
+          <label for="weaknesses">Weaknesses</label>
+          <input type="text" name="weaknesses" id="weaknesses" />
 
           <label for="description">Description:</label>
           <textarea name="description" id="description" rows="5"></textarea>
 
           <label for="armor">Armor:</label>
           <input type="number" name="armor" id="armor" min="0" />
+
+          <label for="harmCapacity">Harm Capacity:</label>
+          <input type="number" name="harmCapacity" id="harmCapacity" min="1" />
 
           <button type="submit">Add Monster</button>
         </form>

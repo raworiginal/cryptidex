@@ -192,7 +192,6 @@ router.delete("/:monsterId/favorited-by/:userId", async (req, res) => {
     res.redirect("/");
   }
 });
+
 /* ================== Exports ================== */
 module.exports = router;
-
-/* ==================  ================== */

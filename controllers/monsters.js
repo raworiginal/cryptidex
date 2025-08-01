@@ -154,10 +154,6 @@ router.delete("/:monsterId", async (req, res) => {
         },
       }
     );
-    // await User.updateMany(
-    //   { createdMonsters: req.params.monsterId },
-    //   { $pull: { createdMonsters: req.params.monsterId } }
-    // );
     await Monster.findByIdAndDelete(req.params.monsterId);
     res.redirect(`/users/${req.session.user._id}`);
   } catch (error) {

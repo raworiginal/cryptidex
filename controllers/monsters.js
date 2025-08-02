@@ -1,14 +1,17 @@
 /* ================== Dependencies ================== */
 const express = require("express");
 const router = express.Router();
-const { Monster, MONSTER_TYPES } = require("../models/monster.js");
+const Monster = require("../models/monster.js");
+const Glossary = require("../models/data.js");
 const User = require("../models/user.js");
 
 /* ===================== CREATE ROUTES ===================== */
 //Get the new monster form
 router.get("/new", (req, res) => {
   try {
-    res.render("monsters/new.ejs", { types: MONSTER_TYPES });
+    res.render("monsters/new.ejs", {
+      types: Glossary.monsterTypes,
+    });
   } catch (error) {
     console.error(error);
     res.redirect("/");
@@ -19,7 +22,7 @@ router.get("/new", (req, res) => {
 router.post("/", async (req, res) => {
   try {
     req.body.creator = req.session.user._id;
-    req.body.type = MONSTER_TYPES[req.body.type];
+    req.body.type = monsterTypes[req.body.type];
     req.body.weaknesses = req.body.weaknesses.toLowerCase().split(", ");
     console.log(req.body);
     const currentMonster = await Monster.create(req.body);
@@ -36,6 +39,7 @@ router.post("/", async (req, res) => {
 //Add attacks to a monster.
 router.put("/:monsterId/attacks", async (req, res) => {
   try {
+    req.body.otherTags = req.body.otherTags.split(",").map((tag) => tag.trim());
     await Monster.findByIdAndUpdate(req.params.monsterId, {
       $push: { attacks: req.body },
     });
@@ -90,6 +94,8 @@ router.get("/:monsterId", async (req, res) => {
     res.render("monsters/show.ejs", {
       monster: populatedMonster,
       userHasFavorited: userHasFavorited,
+      rangeTags: Glossary.rangeTags,
+      otherTags: Glossary.otherTags,
     });
   } catch (error) {
     console.error(error);
@@ -132,6 +138,7 @@ router.put("/:monsterId/attacks/:attackId", async (req, res) => {
   try {
     const currentMonster = await Monster.findById(req.params.monsterId);
     const attack = currentMonster.attacks.id(req.params.attackId);
+    req.body.otherTags.split(",").map((tag) => tag.trim());
     attack.set(req.body);
     await currentMonster.save();
     res.redirect(`/monsters/${currentMonster._id}`);

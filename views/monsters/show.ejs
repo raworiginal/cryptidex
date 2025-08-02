@@ -34,8 +34,8 @@
                 >
                   <button type="submit">delete</button>
                 </form>
-                <%- include('../partials/_edit-attack.ejs', { attack }) %> <% }
-                %>
+                <%- include('../partials/_edit-attack.ejs', { attack, rangeTags,
+                otherTags }) %> <% } %>
               </article>
             </details>
           </li>
@@ -68,24 +68,8 @@
         <% } %> <% } %>
         <p>Tracked by <%= monster.favoritedByUsers.length %> other hunters.</p>
       </article>
-
-      <dialog id="add-attack-form">
-        <form
-          action="/monsters/<%= monster._id %>/attacks?_method=PUT"
-          method="POST"
-        >
-          <h3>Add Attack</h3>
-          <label for="name">Name:</label>
-          <input type="text" name="name" id="name" required />
-          <label for="description">Description: </label>
-          <textarea id="description" name="description"></textarea>
-          <label for="harm">Harm:</label>
-          <input type="number" name="harm" id="harm" min="0" value="0" />
-
-          <button type="submit">Add</button>
-        </form>
-        <script src="/js/modal.js"></script>
-      </dialog>
+      <%- include('../partials/_add-attack.ejs', {rangeTags, otherTags}) %>
+      <script src="/js/modal.js"></script>
     </main>
   </body>
 </html>

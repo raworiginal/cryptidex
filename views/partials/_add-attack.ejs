@@ -1,0 +1,29 @@
+<dialog id="add-attack-form">
+  <form action="/monsters/<%= monster._id %>/attacks?_method=PUT" method="POST">
+    <h3>Add Attack</h3>
+    <label for="name">Names:</label>
+    <input type="text" name="name" id="name" required />
+
+    <label for="harm">Harm:</label>
+    <input type="number" name="harm" id="harm" min="0" max="8" value="3" />
+
+    <label for="rangeTag">Attack Range</label>
+    <select name="rangeTag" id="rangeTag">
+      <% rangeTags.forEach(tag=>{ %>
+      <option value="<%= tag.name %>"><%= tag.name %></option>
+      <% }) %>
+    </select>
+
+    <label for="otherTags">Add Other tags:</label>
+    <input list="other-tags" name="otherTags" id="otherTags" />
+    <datalist id="other-tags">
+      <% otherTags.forEach(tag=>{ %>
+      <p><%= tag.name %></p>
+      <option value="<%= tag.name %>"></option>
+      <% }) %>
+    </datalist>
+    <small>descriptors for the attack (e.g. messy, loud)</small>
+
+    <button type="submit">Add</button>
+  </form>
+</dialog>

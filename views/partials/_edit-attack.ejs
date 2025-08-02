@@ -4,7 +4,7 @@
     method="POST"
   >
     <h3>Edit Attack</h3>
-    <label for="name">Name:</label>
+    <label for="name">Names:</label>
     <input
       type="text"
       name="name"
@@ -12,18 +12,39 @@
       value="<%= attack.name %>"
       required
     />
-    <label for="description">Description: </label>
-    <textarea id="description" name="description">
-<%= attack.description %></textarea
-    >
+
     <label for="harm">Harm:</label>
     <input
       type="number"
       name="harm"
       id="harm"
       min="0"
-      value="<%=attack.harm%>"
+      max="8"
+      value="<%= attack.harm %>"
     />
+
+    <label for="rangeTag">Attack Range</label>
+    <select name="rangeTag" id="rangeTag">
+      <option value="<%= attack.rangeTag %>"></option>
+      <% rangeTags.forEach(tag=>{ %>
+      <option value="<%= tag.name %>"><%= tag.name %></option>
+      <% }) %>
+    </select>
+
+    <label for="otherTags">Add Other tags:</label>
+    <input
+      list="other-tags"
+      name="otherTags"
+      id="otherTags"
+      value="<%= attack.otherTags.join(', ') %>"
+    />
+    <datalist id="other-tags">
+      <% otherTags.forEach(tag=>{ %>
+      <p><%= tag.name %></p>
+      <option value="<%= tag.name %>"></option>
+      <% }) %>
+    </datalist>
+    <small>descriptors for the attack (e.g. messy, loud)</small>
 
     <button type="submit">Edit "<%= attack.name %>"</button>
   </form>

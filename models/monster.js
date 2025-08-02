@@ -1,25 +1,9 @@
 /* ===================== Dependencies ===================== */
 const mongoose = require("mongoose");
-
+const Glossary = require("./data.js");
 /* ===================== Constants ===================== */
-const MONSTER_TYPES = [
-  { name: "Beast", motivation: "to run wild, destroying and killing" },
-  {
-    name: "Breeder",
-    motivation: "to give birth to, bring forth, or create evil",
-  },
-  { name: "Collector", motivation: "to steal specific sorts of things" },
-  { name: "Destroyer", motivation: "to bring about the end of the world" },
-  { name: "Devourer", motivation: "to consume people" },
-  { name: "Executioner", motivation: "to punish the guilty" },
-  { name: "Parasite", motivation: "to infest, control and devour" },
-  { name: "Queen", motivation: "to possess and control" },
-  { name: "Sorcerer", motivation: "to usurp unnatural power" },
-  { name: "Tempter", motivation: "to tempt people into evil deeds" },
-  { name: "Torturer", motivation: "to hurt and terrify" },
-  { name: "Trickster", motivation: "to create chaos" },
-];
-const typeNames = MONSTER_TYPES.map((type) => type.name);
+const typeNames = Glossary.monsterTypes.map((type) => type.name);
+const rangeTags = Glossary.rangeTags.map((tag) => tag.tagName);
 /* ===================== Models ===================== */
 
 const attackSchema = new mongoose.Schema({
@@ -27,11 +11,10 @@ const attackSchema = new mongoose.Schema({
   harm: { type: Number, min: 0, required: true },
   rangeTag: {
     type: String,
-    enum: ["intimate", "hand", "close", "far"],
+    enum: rangeTags,
     required: true,
   },
   otherTags: { type: [String] },
-  description: { type: String },
 });
 
 const powerSchema = new mongoose.Schema({
@@ -67,4 +50,4 @@ const monsterSchema = new mongoose.Schema({
 
 const Monster = mongoose.model("Monster", monsterSchema);
 /* ===================== Exports ===================== */
-module.exports = { Monster, MONSTER_TYPES };
+module.exports = Monster;

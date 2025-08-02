@@ -4,72 +4,9 @@
   <body>
     <header><%- include('../partials/_nav-bar.ejs') %></header>
     <main>
-      <article>
-        <h1><%=monster.name%></h1>
-        <p><%= monster.type.name %></p>
-        <p><strong>motivation:</strong> <%= monster.type.motivation %></p>
-        <h4>Description</h4>
-        <p><%= monster.description %></p>
-        <p><strong>Weakness: </strong><%= monster.weakness %></p>
-        <p><strong>Armor: </strong><%= monster.armor %></p>
-        <p><strong>Attacks:</strong></p>
-        <% if (monster.attacks.length === 0) { %>
-        <p>No known attacks</p>
-        <% } else {%>
-        <ul>
-          <% monster.attacks.forEach(attack=>{ %>
-          <li>
-            <details name="<%= attack.name %>">
-              <summary><h5><%= attack.name %></h5></summary>
-              <article>
-                <p><strong>Harm:</strong> <%= attack.harm %></p>
-                <p><strong>Description:</strong><%= attack.description %></p>
-                <% if (monster.creator._id.equals(user._id)){ %>
-                <button id="<%= attack._id %>" class="edit-attack-btn">
-                  edit
-                </button>
-                <form
-                  action="/monsters/<%= monster._id %>/attacks/<%= attack._id %>?_method=DELETE"
-                  method="POST"
-                >
-                  <button type="submit">delete</button>
-                </form>
-                <%- include('../partials/_edit-attack.ejs', { attack, rangeTags,
-                otherTags }) %> <% } %>
-              </article>
-            </details>
-          </li>
-          <% }) %> <% } %>
-        </ul>
-
-        <% if (monster.creator._id.equals(user._id)){ %>
-        <button id="add-attack-btn">Add Attack</button>
-        <a role="button" href="/monsters/<%= monster._id %>/edit">Edit</a>
-        <form
-          action="/monsters/<%= monster._id %>?_method=DELETE"
-          method="POST"
-        >
-          <button type="submit">Delete Monster</button>
-        </form>
-        <% } else { %> <% if (userHasFavorited) { %>
-        <form
-          action="/monsters/<%= monster._id %>/favorited-by/<%= user._id %>?_method=DELETE"
-          method="POST"
-        >
-          <button type="submit">Untrack this monster</button>
-        </form>
-        <% } else { %>
-        <form
-          action="/monsters/<%= monster._id %>/favorited-by/<%= user._id %>"
-          method="POST"
-        >
-          <button type="submit">Track this monster</button>
-        </form>
-        <% } %> <% } %>
-        <p>Tracked by <%= monster.favoritedByUsers.length %> other hunters.</p>
-      </article>
-      <%- include('../partials/_add-attack.ejs', {rangeTags, otherTags}) %>
+      <%- include("../partials/_monster-card-show.ejs") %>
       <script src="/js/modal.js"></script>
     </main>
   </body>
+  <footer></footer>
 </html>

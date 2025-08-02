@@ -1,0 +1,13 @@
+<dialog id="add-attack-form">
+  <form action="/monsters/<%= monster._id %>/powers?_method=PUT" method="POST">
+    <h3>Add Power</h3>
+
+    <label for="name">Names:</label>
+    <input type="text" name="name" id="name" required />
+
+    <label for="description">Description:</label>
+    <textarea name="description" id="description" rows="3"></textarea>
+
+    <button type="submit">Add</button>
+  </form>
+</dialog>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/_html-head.ejs', {title: 'Sign-in'}) %>
+  <%- include("./partials/_html-head.ejs", {title: "Sign-in"}) %>
   <body>
     <header><%- include('./partials/_nav-bar.ejs') %></header>
     <main>
@@ -13,5 +13,6 @@
       <a href="/auth/sign-in">sign in</a>
       <% } %>
     </main>
+    <footer><%- include("./partials/_footer.ejs") %></footer>
   </body>
 </html>

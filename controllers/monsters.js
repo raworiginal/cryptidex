@@ -160,6 +160,20 @@ router.put("/:monsterId/attacks/:attackId", async (req, res) => {
     res.redirect("/");
   }
 });
+
+// Update a power
+router.put("/:monsterId/powers/:powerId", async (req, res) => {
+  try {
+    const currentMonster = await Monster.findById(req.params.monsterId);
+    const power = currentMonster.powers.id(req.params.powerId);
+    power.set(req.body);
+    await currentMonster.save();
+    res.redirect(`/monsters/${currentMonster._id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
 /* ===================== DELETE ===================== */
 //Delete a monster
 router.delete("/:monsterId", async (req, res) => {

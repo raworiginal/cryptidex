@@ -1,6 +1,13 @@
 const addAttackBtn = document.querySelector("#add-attack-btn");
 const addAttackForm = document.querySelector("#add-attack-form");
+const addPowerBtn = document.querySelector("#add-power-btn");
+const addPowerForm = document.querySelector("#add-power-form");
 const editAttackBtns = document.querySelectorAll(".edit-attack-btn");
+
+addPowerBtn.addEventListener("click", () => {
+  console.log(addPowerForm);
+  addPowerForm.showModal();
+});
 
 addAttackBtn.addEventListener("click", () => {
   addAttackForm.showModal();

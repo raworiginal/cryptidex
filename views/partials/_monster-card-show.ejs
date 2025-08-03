@@ -13,7 +13,7 @@
     <% if (monster.powers.length === 0) { %>
     <p>No known powers</p>
     <% } else {%>
-    <!-- List all attacks -->
+    <!-- List all Powers -->
     <% monster.powers.forEach(power=>{ %>
     <details name="<%= power.name %>">
       <summary><h5><%= power.name %></h5></summary>
@@ -27,16 +27,16 @@
         <button type="submit">delete</button>
       </form>
       <% } %>
-      <!-- Edit attack Modal  -->
-      <%- include('../partials/_edit-attack.ejs', { attack, rangeTags,
-      otherTags}) %>
+      <!-- Edit Powers Modal  -->
+      <%- include('../partials/_edit-attack.ejs', { power }) %>
     </details>
     <% })}; %>
-    <!-- Add attack button -->
+    <!-- Add power button -->
     <% if (monster.creator._id.equals(user._id)){ %>
     <button id="add-power-btn">Add Power</button>
     <% } %>
   </section>
+  <%- include('../partials/_add-power.ejs') %>
 
   <section>
     <h4>Defense</h4>
@@ -75,6 +75,7 @@
     <button id="add-attack-btn">Add Attack</button>
     <% } %>
   </section>
+  <%- include('../partials/_add-attack.ejs') %>
 
   <footer>
     <% if (userHasFavorited) { %>
@@ -98,6 +99,5 @@
     <form action="/monsters/<%= monster._id %>?_method=DELETE" method="POST">
       <button type="submit">Delete Monster</button>
     </form>
-    <%- include('../partials/_add-attack.ejs', {rangeTags, otherTags}) %>
   </footer>
 </article>

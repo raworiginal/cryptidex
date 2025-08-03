@@ -16,7 +16,9 @@
     <!-- List all Powers -->
     <% monster.powers.forEach(power=>{ %>
     <details name="<%= power.name %>">
-      <summary><h5><%= power.name %></h5></summary>
+      <summary>
+        <h5><%= power.name %></h5>
+      </summary>
       <p><strong>Description:</strong><%= power.description %></p>
       <% if (monster.creator._id.equals(user._id)){ %>
       <button id="<%= power._id %>" class="edit-power-btn">edit</button>
@@ -53,7 +55,9 @@
     <!-- List all attacks -->
     <% monster.attacks.forEach(attack=>{ %>
     <details name="<%= attack.name %>">
-      <summary><h5><%= attack.name %></h5></summary>
+      <summary>
+        <h5><%= attack.name %></h5>
+      </summary>
       <p><strong>Harm:</strong> <%= attack.harm %></p>
       <p><strong>Description:</strong><%= attack.description %></p>
       <% if (monster.creator._id.equals(user._id)){ %>

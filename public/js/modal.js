@@ -1,8 +1,9 @@
 const addAttackBtn = document.querySelector("#add-attack-btn");
 const addAttackForm = document.querySelector("#add-attack-form");
+const editAttackBtns = document.querySelectorAll(".edit-attack-btn");
 const addPowerBtn = document.querySelector("#add-power-btn");
 const addPowerForm = document.querySelector("#add-power-form");
-const editAttackBtns = document.querySelectorAll(".edit-attack-btn");
+const editPowerBtns = document.querySelectorAll(".edit-power-btn");
 
 addPowerBtn.addEventListener("click", () => {
   console.log(addPowerForm);
@@ -14,6 +15,12 @@ addAttackBtn.addEventListener("click", () => {
 });
 
 editAttackBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelector(`#modal-${btn.id}`).showModal();
+  });
+});
+
+editPowerBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     document.querySelector(`#modal-${btn.id}`).showModal();
   });

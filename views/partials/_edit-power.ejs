@@ -6,10 +6,18 @@
     <h3>Edit Power</h3>
 
     <label for="name">Names:</label>
-    <input type="text" name="name" id="name" required />
+    <input
+      type="text"
+      name="name"
+      id="name"
+      value="<%= power.name %>"
+      required
+    />
 
     <label for="description">Description:</label>
-    <textarea name="description" id="description" rows="3"></textarea>
+    <textarea name="description" id="description" rows="3">
+<%= power.description %></textarea
+    >
 
     <button type="submit">Edit "<%= power.name %>"</button>
   </form>

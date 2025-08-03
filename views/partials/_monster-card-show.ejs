@@ -22,6 +22,7 @@
       <p><strong>Description:</strong><%= power.description %></p>
       <% if (monster.creator._id.equals(user._id)){ %>
       <button id="<%= power._id %>" class="edit-power-btn">edit</button>
+      <!-- Delete power btn -->
       <form
         action="/monsters/<%= monster._id %>/powers/<%= power._id %>?_method=DELETE"
         method="POST"

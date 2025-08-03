@@ -198,11 +198,24 @@ router.delete("/:monsterId", async (req, res) => {
   }
 });
 
-//Delete an attack from monster
+//Delete an attack from a monster
 router.delete("/:monsterId/attacks/:attackId", async (req, res) => {
   try {
     const currentMonster = await Monster.findById(req.params.monsterId);
     currentMonster.attacks.pull(req.params.attackId);
+    await currentMonster.save();
+    res.redirect(`/monsters/${currentMonster._id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
+
+//DELETE a power from a monster
+router.delete("/:monsterId/powers/:powerId", async (req, res) => {
+  try {
+    const currentMonster = await Monster.findById(req.params.monsterId);
+    currentMonster.powers.pull(req.params.powerId);
     await currentMonster.save();
     res.redirect(`/monsters/${currentMonster._id}`);
   } catch (error) {

@@ -4,6 +4,15 @@ const router = express.Router();
 const User = require("../models/user.js");
 /* ================== CREATE ================== */
 /* ================== READ ================== */
+router.get("/", async (req, res) => {
+  try {
+    res.send("This will be the User Index Page");
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
+
 router.get("/:userId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId)

@@ -50,6 +50,19 @@ router.put("/:monsterId/attacks", async (req, res) => {
   }
 });
 
+//Add powers to a monster
+router.put("/:monsterId/powers", async (req, res) => {
+  try {
+    await Monster.findByIdAndUpdate(req.params.monsterId, {
+      $push: { powers: req.body },
+    });
+    res.redirect(`/monsters/${req.params.monsterId}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
+
 //Add user to favorited-by and add monster ref to user
 router.post("/:monsterId/favorited-by/:userId", async (req, res) => {
   try {

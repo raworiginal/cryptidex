@@ -1,0 +1,16 @@
+<dialog id="modal-<%= power._id %>">
+  <form
+    action="/monsters/<%= monster._id %>/powers/<%= power._id%>?_method=PUT"
+    method="POST"
+  >
+    <h3>Edit Power</h3>
+
+    <label for="name">Names:</label>
+    <input type="text" name="name" id="name" required />
+
+    <label for="description">Description:</label>
+    <textarea name="description" id="description" rows="3"></textarea>
+
+    <button type="submit">Edit "<%= power.name %>"</button>
+  </form>
+</dialog>

@@ -22,7 +22,7 @@ router.get("/new", (req, res) => {
 router.post("/", async (req, res) => {
   try {
     req.body.creator = req.session.user._id;
-    req.body.type = monsterTypes[req.body.type];
+    req.body.type = Glossary.monsterTypes[req.body.type];
     req.body.weaknesses = req.body.weaknesses.toLowerCase().split(", ");
     console.log(req.body);
     const currentMonster = await Monster.create(req.body);

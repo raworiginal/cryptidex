@@ -6,7 +6,12 @@ const User = require("../models/user.js");
 /* ================== READ ================== */
 router.get("/", async (req, res) => {
   try {
-    res.send("This will be the User Index Page");
+    const currentUser = await User.findById(req.session.user._id);
+    const otherUsers = await User.find({
+      username: { $ne: currentUser.username },
+    });
+    console.log(otherUsers);
+    res.render("users/index.ejs", { otherUsers });
   } catch (error) {
     console.error(error);
     res.redirect("/");

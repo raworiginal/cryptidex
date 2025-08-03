@@ -10,9 +10,9 @@
         <a href="/monsters/<%= monster._id %>">
           <h3><%= monster.name %></h3>
         </a>
-        <p><%= monster.type %></p>
+        <p><%= monster.type.name %></p>
         <a href="/users/<%= monster.creator._id %>">
-          <p>Discovered by: <%= monster.creator.username %></p>
+          <p>Reported by: <%= monster.creator.username %></p>
         </a>
       </article>
       <% }) %>

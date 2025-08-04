@@ -1,0 +1,14 @@
+:root {
+  --pico-font-family: "Special Elite", system-ui;
+}
+.monster-card-show {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :host(:not([data-theme])),
+  :root:not([data-theme]) {
+    color-scheme: dark;
+  }
+}

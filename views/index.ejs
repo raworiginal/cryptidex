@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("./partials/_html-head.ejs", {title: "Sign-in"}) %>
+  <%- include("./partials/_html-head.ejs", {title: "CRYPTIDEX"}) %>
   <body>
     <header><%- include('./partials/_nav-bar.ejs') %></header>
     <main>
-      <% if (user) { %>
-      <h1>Welcome to the CRYPTIDEX, <%= user.username %>!</h1>
-      <h2>Here are your currently tracked Monsters</h2>
-      <% } else { %>
-      <h1>Welcome to the app!</h1>
-      <a href="/auth/sign-up">Sign up</a>
-      <a href="/auth/sign-in">sign in</a>
-      <% } %>
+      <article>
+        <h1>Welcome to the CRYPTIDEX</h1>
+        <p>a collection of monsters for mysteries</p>
+      </article>
     </main>
     <footer><%- include("./partials/_footer.ejs") %></footer>
   </body>

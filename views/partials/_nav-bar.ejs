@@ -6,13 +6,39 @@
   </ul>
   <ul>
     <% if (user) { %>
-    <li><a href="/monsters">All Monsters</a></li>
-    <li><a href="/monsters/new">Report Monster</a></li>
-    <li><a href="/users/">Other Hunters</a></li>
-    <li><a href="/auth/sign-out">Sign Out</a></li>
+    <li>
+      <a href="/monsters" data-tooltip="browse monsters" data-placement="bottom"
+        ><span class="material-symbols-outlined"> skull </span></a
+      >
+    </li>
+    <li>
+      <a
+        href="/monsters/new"
+        data-tooltip="report a monster"
+        data-placement="bottom"
+        ><span class="material-symbols-outlined"> post_add </span></a
+      >
+    </li>
+    <li>
+      <a
+        href="/users/"
+        data-tooltip="browse other hunters"
+        data-placement="bottom"
+        ><span class="material-symbols-outlined"> group </span></a
+      >
+    </li>
+    <li>
+      <a href="/auth/sign-out" data-tooltip="sign-out" data-placement="bottom"
+        ><span class="material-symbols-outlined"> logout </span></a
+      >
+    </li>
     <% } else { %>
-    <li><a href="/auth/sign-in">Sign In</a></li>
-    <li><a href="/auth/sign-up">Sign Up</a></li>
+    <li>
+      <a href="/auth/sign-in" data-tooltip="sign-in" data-placement="bottom"
+        ><span class="material-symbols-outlined"> login </span></a
+      >
+    </li>
+    <li><a role="button" href="/auth/sign-up">Sign Up</a></li>
     <% } %>
   </ul>
 </nav>

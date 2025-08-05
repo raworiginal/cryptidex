@@ -3,7 +3,7 @@
   <%- include('../partials/_html-head.ejs', {title: 'All Hunters'}) %>
   <body>
     <header><%- include('../partials/_nav-bar.ejs') %></header>
-    <main>
+    <main class="container">
       <h1>Other Hunters</h1>
       <ul>
         <% otherUsers.forEach((user) => {%>
@@ -13,6 +13,6 @@
         <% }) %>
       </ul>
     </main>
-    <footer><%- include("../partials/_footer.ejs") %></footer>
+    <%- include("../partials/_footer.ejs") %>
   </body>
 </html>

@@ -3,13 +3,17 @@
   <%- include("./partials/_html-head.ejs", {title: "CRYPTIDEX"}) %>
   <body>
     <header><%- include('./partials/_nav-bar.ejs') %></header>
-    <main>
-      <article class="monster-card-show">
+    <main class="container">
+      <article class="centered">
         <h1>Welcome to the CRYPTIDEX</h1>
         <p>a collection of monsters for mysteries</p>
-        <img class="logo" src="/assets/images/image1.svg" alt="" />
+        <img
+          class="logo"
+          src="/assets/images/image1.svg"
+          alt="CRYPTIDEX logo"
+        />
       </article>
     </main>
-    <footer><%- include("./partials/_footer.ejs", {Glossary}) %></footer>
+    <%- include("./partials/_footer.ejs", {Glossary}) %>
   </body>
 </html>

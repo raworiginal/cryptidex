@@ -4,7 +4,7 @@
 
   <body>
     <header><%- include('../partials/_nav-bar') %></header>
-    <main>
+    <main class="container">
       <article>
         <h1><%= currentUser.username %>'s Crytidex</h1>
         <% if (currentUser._id.toString() === user._id) { %>
@@ -22,6 +22,6 @@
         </ul>
       </article>
     </main>
-    <footer><%- include("../partials/_footer.ejs") %></footer>
+    <%- include("../partials/_footer.ejs") %>
   </body>
 </html>

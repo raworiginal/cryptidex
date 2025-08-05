@@ -1,9 +1,7 @@
 :root {
   --pico-font-family: "Special Elite", system-ui;
 }
-.logo {
-  fill: aqua;
-}
+
 body {
   min-height: 100vh;
   display: flex;

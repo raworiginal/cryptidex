@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/_html-head.ejs', {title: currentUser.username}) %>
+  <%- include('../partials/_html-head.ejs', {title: currentUser.username}) %>
 
-<body>
-  <header>
-    <%- include('../partials/_nav-bar') %>
-  </header>
-  <main>
-    <article>
-
-      <h1>
-        <%= currentUser.username %>'s Crytidex
-      </h1>
-      <% if (currentUser._id.toString() === user._id) { %>
-      <h3>Your Tracked Monsters:</h3>
-      <ul>
-        <% currentUser.favoritedMonsters.forEach(monster => { %>
-        <li><a href="/monsters/<%= monster._id %>"><%=monster.name%></a></li>
-        <% }) %>
-        <% } %>
-      </ul>
-      <h3> Reported Monster</h3>
-      <ul>
-      <% currentUser.createdMonsters.forEach((monster)=>{ %>
-      <li><a href="/monsters/<%= monster._id %>"><%=monster.name%></a></li>
-      <% }) %>
-      </ul>
-    </article>
-  </main>
-  <footer>
-    <%- include("../partials/_footer.ejs") %>
-  </footer>
-</body>
-
+  <body>
+    <header><%- include('../partials/_nav-bar') %></header>
+    <main>
+      <article>
+        <h1><%= currentUser.username %>'s Crytidex</h1>
+        <% if (currentUser._id.toString() === user._id) { %>
+        <h3>Your Tracked Monsters:</h3>
+        <ul>
+          <% currentUser.favoritedMonsters.forEach(monster => { %>
+          <li><a href="/monsters/<%= monster._id %>"><%=monster.name%></a></li>
+          <% }) %> <% } %>
+        </ul>
+        <h3>Reported Monsters</h3>
+        <ul>
+          <% currentUser.createdMonsters.forEach((monster)=>{ %>
+          <li><a href="/monsters/<%= monster._id %>"><%=monster.name%></a></li>
+          <% }) %>
+        </ul>
+      </article>
+    </main>
+    <footer><%- include("../partials/_footer.ejs") %></footer>
+  </body>
 </html>

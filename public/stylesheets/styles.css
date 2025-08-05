@@ -1,7 +1,7 @@
 :root {
   --pico-font-family: "Special Elite", system-ui;
-  margin-bottom: 0;
 }
+
 body {
   min-height: 100vh;
   display: flex;
@@ -49,10 +49,6 @@ body {
 .footer p {
   margin: 0;
 }
-
-@media only screen and (prefers-color-scheme: dark) {
-  :host(:not([data-theme])),
-  :root:not([data-theme]) {
-    color-scheme: dark;
-  }
+.copyright {
+  text-align: center;
 }

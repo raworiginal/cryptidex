@@ -4,8 +4,7 @@
       <h3 class="monster-name"><%= monster.name %></h3>
       <%- include("../partials/_toolbar.ejs") %>
     </div>
-    <p class="monster-description"><%= monster.description %></p>
-    <p class="monster-type">
+    <p class="monster-description"><%= monster.description %><br><small>
       <%= monster.type.name %><small>
         (motivation: <%= monster.type.motivation %>)
       </small>
@@ -62,11 +61,7 @@
             action="/monsters/<%= monster._id %>/powers/<%= power._id %>?_method=DELETE"
             method="POST"
           >
-            <button
-              class="icon-btn"
-              type="submit"
-              data-tooltip="delete power"
-            >
+            <button class="icon-btn" type="submit" data-tooltip="delete power">
               <span class="material-symbols-outlined"> delete </span>
             </button>
           </form>
@@ -89,51 +84,45 @@
       <p>No known attacks</p>
       <% } else { %><!-- List all attacks -->
 
-        <% monster.attacks.forEach(attack => { %>
-        <div class="top-row">
-            <p>
-              <strong> <%= attack.name %>: </strong>
-              <%= attack.harm %>-harm <%= attack.otherTags.join(' ') %>
-            </p>
-            <% if (monster.creator._id.equals(user._id)) { %>
-              <section class="toolbar">
-                <a
-                href="#"
-                id="<%= attack._id %>"
-                class="edit-attack-btn"
-                data-tooltip="edit attack"
-                ><span class="material-symbols-outlined"> edit </span></a
-                >
-                <form
-                action="/monsters/<%= monster._id %>/attacks/<%= attack._id %>?_method=DELETE"
-                method="POST"
-                >
-                <button class="icon-btn" type="submit" data-tooltip="delete attack">
-                  <span class="material-symbols-outlined"> delete </span>
-                </button>
-              </form>
-              <% } %><!-- Edit attack Modal  -->
-              <%- include("../partials/_edit-attack.ejs",
-            {attack,rangeTags,otherTags}) %>
-          </section>
-        </div>
+      <% monster.attacks.forEach(attack => { %>
+      <div class="top-row">
+        <p>
+          <strong> <%= attack.name %>: </strong>
+          <%= attack.harm %>-harm <%= attack.otherTags.join(' ') %>
+        </p>
+        <% if (monster.creator._id.equals(user._id)) { %>
+        <section class="toolbar">
+          <a
+            href="#"
+            id="<%= attack._id %>"
+            class="edit-attack-btn"
+            data-tooltip="edit attack"
+            ><span class="material-symbols-outlined"> edit </span></a
+          >
+          <form
+            action="/monsters/<%= monster._id %>/attacks/<%= attack._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="icon-btn" type="submit" data-tooltip="delete attack">
+              <span class="material-symbols-outlined"> delete </span>
+            </button>
+          </form>
+          <% } %><!-- Edit attack Modal  -->
+          <%- include("../partials/_edit-attack.ejs",
+          {attack,rangeTags,otherTags}) %>
+        </section>
+      </div>
 
       <% })}; %>
     </section>
   </main>
-  <footer>
+  <footer class="footer">
     <p>
       Reported by
       <a href="/users/<%= monster.creator._id %>">
         <%= monster.creator.username %>
       </a>
     </p>
-    <% if (monster.favoritedByUsers.length < 1) { %>
-    <p>No hunters tracking this monster</p>
-    <% } else if (monster.favoritedByUsers.length === 1) { %>
-    <p>Tracked by 1 other hunter</p>
-    <% } else { %>
-    <p>Tracked by <%= monster.favoritedByUsers.length %>other hunters.</p>
-    <% } %>
+    <p>Tracked by <%= monster.favoritedByUsers.length %> hunter(s)</p>
   </footer>
 </article>

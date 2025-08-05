@@ -11,6 +11,7 @@ router.get("/new", (req, res) => {
   try {
     res.render("monsters/new.ejs", {
       types: Glossary.monsterTypes,
+      Glossary,
     });
   } catch (error) {
     console.error(error);

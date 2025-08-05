@@ -45,22 +45,24 @@
       <% monster.powers.forEach((power) => { %>
       <details name="<%= power.name %>">
         <summary><%= power.name %></summary>
-        <section class="toolbar">
+        <div class="top-row">
+
           <p><%= power.description %></p>
-          <% if (monster.creator._id.equals(user._id)) { %>
-          <a
-            href="#"
-            id="<%= power._id %>"
-            class="edit-power-btn"
-            data-tooltip="edit power"
-          >
-            <span class="material-symbols-outlined">edit</span>
-          </a>
-          <!-- Delete power btn -->
-          <form
+          <section class="toolbar">
+            <% if (monster.creator._id.equals(user._id)) { %>
+              <a
+              href="#"
+              id="<%= power._id %>"
+              class="edit-power-btn"
+              data-tooltip="edit power"
+              >
+              <span class="material-symbols-outlined">edit</span>
+            </a>
+            <!-- Delete power btn -->
+            <form
             action="/monsters/<%= monster._id %>/powers/<%= power._id %>?_method=DELETE"
             method="POST"
-          >
+            >
             <button class="icon-btn" type="submit" data-tooltip="delete power">
               <span class="material-symbols-outlined"> delete </span>
             </button>
@@ -68,6 +70,7 @@
           <% } %><!-- Edit Powers Modal  -->
           <%- include('../partials/_edit-power.ejs', {power}) %>
         </section>
+      </div>
       </details>
       <% })}; %>
     </section>

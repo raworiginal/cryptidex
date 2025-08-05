@@ -88,6 +88,7 @@ router.get("/", async (req, res) => {
     res.render("monsters/index.ejs", {
       monsters: populatedMonsters,
       user: currentUser,
+      Glossary,
     });
   } catch (error) {
     console.error(error);
@@ -110,6 +111,7 @@ router.get("/:monsterId", async (req, res) => {
       userHasFavorited: userHasFavorited,
       rangeTags: Glossary.rangeTags,
       otherTags: Glossary.otherTags,
+      Glossary,
     });
   } catch (error) {
     console.error(error);
@@ -125,6 +127,7 @@ router.get("/:monsterId/edit", async (req, res) => {
     res.render("monsters/edit.ejs", {
       monster: currentMonster,
       types: Glossary.monsterTypes,
+      Glossary,
     });
   } catch (error) {
     console.error(error);

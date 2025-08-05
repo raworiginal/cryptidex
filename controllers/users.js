@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user.js");
+const Glossary = require("../models/data.js");
 /* ================== CREATE ================== */
 /* ================== READ ================== */
 router.get("/", async (req, res) => {
@@ -10,7 +11,7 @@ router.get("/", async (req, res) => {
     const otherUsers = await User.find({
       username: { $ne: currentUser.username },
     });
-    res.render("users/index.ejs", { otherUsers });
+    res.render("users/index.ejs", { otherUsers, Glossary });
   } catch (error) {
     console.error(error);
     res.redirect("/");
@@ -26,6 +27,7 @@ router.get("/:userId", async (req, res) => {
       currentUser,
       favoritedMonsters: currentUser.favoritedMonsters,
       createdMonsters: currentUser.createdMonsters,
+      Glossary,
     });
   } catch (error) {
     console.error(error);

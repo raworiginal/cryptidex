@@ -1,0 +1,14 @@
+<dialog id="info-modal">
+  <article id="glossary">
+    <div class="top row"></div>
+    <h3>Monster Types</h3>
+    <ul>
+      <% Glossary.monsterTypes.forEach((type)=>{ %>
+      <li>
+        <strong><%= type.name %></strong>
+        <p>motivation: <%= type.motivation %></p>
+      </li>
+      <% }) %>
+    </ul>
+  </article>
+</dialog>

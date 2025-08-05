@@ -18,17 +18,12 @@
 
           <label for="type">Monster Type: </label>
           <select name="type" id="type">
-            <option value="<%= monster.type %>"><%= monster.type %></option>
-            <option value="Unknown">Unknown</option>
-            <option value="Beast">Beast</option>
-            <option value="Cybernetic">Cybernetic</option>
-            <option value="Eldritch Horror">Eldritch Horror</option>
-            <option value="Extraterrestrial">Extraterrestrial</option>
-            <option value="Fae">Fae</option>
-            <option value="Human">Human</option>
-            <option value="Shapechanger">Shapechanger</option>
-            <option value="Spirit">Spirit</option>
-            <option value="Undead">Undead</option>
+            <option value="<%= types.indexOf(monster.type)%>">
+              <%= monster.type.name %>
+            </option>
+            <% types.forEach((type, index) =>{ %>
+            <option value="<%= index %>"><%= type.name %></option>
+            <% }); %>
           </select>
 
           <label for="weakness">Weakness</label>
@@ -36,7 +31,7 @@
             type="text"
             name="weakness"
             id="weakness"
-            value="<%= monster.weakness %>"
+            value="<%= monster.weaknesses.join(', ') %>"
           />
 
           <label for="description">Description:</label>

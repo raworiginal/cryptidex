@@ -126,6 +126,7 @@ router.get("/:monsterId/edit", async (req, res) => {
     const currentMonster = await Monster.findById(req.params.monsterId);
     res.render("monsters/edit.ejs", {
       monster: currentMonster,
+      types: Glossary.monsterTypes,
     });
   } catch (error) {
     console.error(error);

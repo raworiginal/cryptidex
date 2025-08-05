@@ -3,14 +3,13 @@
   <%- include('../partials/_html-head.ejs', {title: 'All Hunters'}) %>
   <body>
     <header><%- include('../partials/_nav-bar.ejs') %></header>
-
     <main>
       <h1>Other Hunters</h1>
       <ul>
         <% otherUsers.forEach((user) => {%>
-        <a href="/users/<%= user._id %>">
-          <li><%= user.username %></li>
-        </a>
+        <article>
+          <a href="/users/<%= user._id %>"> <h3><%= user.username %></h3> </a>
+        </article>
         <% }) %>
       </ul>
     </main>

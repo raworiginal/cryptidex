@@ -16,6 +16,7 @@ Cryptidex is a database app for collecting monster ideas for the tabletop rolepl
 - [Monster of the Week](https://evilhat.com/product/monster-of-the-week/)
 - [Google Material Design Icons](https://fonts.google.com/icons)
 - [Google Font: Special Elite](https://fonts.google.com/specimen/Special+Elite)
+- [Freepik](https://www.freepik.com/icon/) logo made with assets from Freepik.com
 
 ## Technologies
 

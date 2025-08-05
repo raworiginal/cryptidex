@@ -5,9 +5,9 @@
       <%- include("../partials/_toolbar.ejs") %>
     </div>
     <p class="monster-description"><%= monster.description %><br><small>
-      <%= monster.type.name %><small>
-        (motivation: <%= monster.type.motivation %>)
-      </small>
+        <%= monster.type.name %><small>
+          (motivation: <%= monster.type.motivation %>)
+        </small>
     </p>
   </header>
   <main>
@@ -18,7 +18,7 @@
       </p>
       <p>
         <strong>Armour: </strong>
-        <%= monster.armor %>
+        <%= monster.armor > 0 ? monster.armor: 'none' %>
       </p>
       <p>
         <strong>Harm Capacity: </strong>
@@ -30,18 +30,13 @@
         <h4>Powers</h4>
         <!-- Add power button -->
         <% if (monster.creator._id.equals(user._id)) { %>
-        <a
-          id="add-power-btn"
-          href="#"
-          id="add-power-btn"
-          data-tooltip="add power"
-          ><span class="material-symbols-outlined"> add_circle </span></a
-        >
+        <a id="add-power-btn" href="#" id="add-power-btn" data-tooltip="add power"><span class="material-symbols-outlined"> add_circle </span></a>
         <% } %> <%- include("../partials/_add-power.ejs") %>
       </div>
       <% if (monster.powers.length === 0) { %>
       <p>No known powers</p>
-      <% } else { %><!-- List all Powers -->
+      <% } else { %>
+      <!-- List all Powers -->
       <% monster.powers.forEach((power) => { %>
       <details name="<%= power.name %>">
         <summary><%= power.name %></summary>
@@ -50,27 +45,20 @@
           <p><%= power.description %></p>
           <section class="toolbar">
             <% if (monster.creator._id.equals(user._id)) { %>
-              <a
-              href="#"
-              id="<%= power._id %>"
-              class="edit-power-btn"
-              data-tooltip="edit power"
-              >
+            <a href="#" id="<%= power._id %>" class="edit-power-btn" data-tooltip="edit power">
               <span class="material-symbols-outlined">edit</span>
             </a>
             <!-- Delete power btn -->
-            <form
-            action="/monsters/<%= monster._id %>/powers/<%= power._id %>?_method=DELETE"
-            method="POST"
-            >
-            <button class="icon-btn" type="submit" data-tooltip="delete power">
-              <span class="material-symbols-outlined"> delete </span>
-            </button>
-          </form>
-          <% } %><!-- Edit Powers Modal  -->
-          <%- include('../partials/_edit-power.ejs', {power}) %>
-        </section>
-      </div>
+            <form action="/monsters/<%= monster._id %>/powers/<%= power._id %>?_method=DELETE" method="POST">
+              <button class="icon-btn" type="submit" data-tooltip="delete power">
+                <span class="material-symbols-outlined"> delete </span>
+              </button>
+            </form>
+            <% } %>
+            <!-- Edit Powers Modal  -->
+            <%- include('../partials/_edit-power.ejs', {power}) %>
+          </section>
+        </div>
       </details>
       <% })}; %>
     </section>
@@ -78,14 +66,13 @@
       <div class="top-row">
         <h4>Attacks:</h4>
         <% if (monster.creator._id.equals(user._id)) { %>
-        <a id="add-attack-btn" href="#" data-tooltip="add attack"
-          ><span class="material-symbols-outlined"> add_circle </span></a
-        >
+        <a id="add-attack-btn" href="#" data-tooltip="add attack"><span class="material-symbols-outlined"> add_circle </span></a>
         <% } %> <%- include('../partials/_add-attack.ejs') %>
       </div>
       <% if (monster.attacks.length === 0) { %>
       <p>No known attacks</p>
-      <% } else { %><!-- List all attacks -->
+      <% } else { %>
+      <!-- List all attacks -->
 
       <% monster.attacks.forEach(attack => { %>
       <div class="top-row">
@@ -95,22 +82,14 @@
         </p>
         <% if (monster.creator._id.equals(user._id)) { %>
         <section class="toolbar">
-          <a
-            href="#"
-            id="<%= attack._id %>"
-            class="edit-attack-btn"
-            data-tooltip="edit attack"
-            ><span class="material-symbols-outlined"> edit </span></a
-          >
-          <form
-            action="/monsters/<%= monster._id %>/attacks/<%= attack._id %>?_method=DELETE"
-            method="POST"
-          >
+          <a href="#" id="<%= attack._id %>" class="edit-attack-btn" data-tooltip="edit attack"><span class="material-symbols-outlined"> edit </span></a>
+          <form action="/monsters/<%= monster._id %>/attacks/<%= attack._id %>?_method=DELETE" method="POST">
             <button class="icon-btn" type="submit" data-tooltip="delete attack">
               <span class="material-symbols-outlined"> delete </span>
             </button>
           </form>
-          <% } %><!-- Edit attack Modal  -->
+          <% } %>
+          <!-- Edit attack Modal  -->
           <%- include("../partials/_edit-attack.ejs",
           {attack,rangeTags,otherTags}) %>
         </section>

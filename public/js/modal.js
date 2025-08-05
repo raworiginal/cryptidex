@@ -6,7 +6,6 @@ const addPowerForm = document.querySelector("#add-power-form");
 const editPowerBtns = document.querySelectorAll(".edit-power-btn");
 
 addPowerBtn.addEventListener("click", () => {
-  console.log(addPowerForm);
   addPowerForm.showModal();
 });
 

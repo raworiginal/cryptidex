@@ -24,7 +24,6 @@ router.post("/", async (req, res) => {
     req.body.creator = req.session.user._id;
     req.body.type = Glossary.monsterTypes[req.body.type];
     req.body.weaknesses = req.body.weaknesses.toLowerCase().split(", ");
-    console.log(req.body);
     const currentMonster = await Monster.create(req.body);
     await User.findByIdAndUpdate(req.session.user._id, {
       $push: { createdMonsters: currentMonster },
@@ -86,7 +85,6 @@ router.get("/", async (req, res) => {
   try {
     const populatedMonsters = await Monster.find({}).populate("creator");
     const currentUser = await User.findById(req.session.user._id);
-    console.log(currentUser);
     res.render("monsters/index.ejs", {
       monsters: populatedMonsters,
       user: currentUser,

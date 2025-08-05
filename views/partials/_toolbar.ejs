@@ -1,0 +1,35 @@
+<section class="toolbar">
+        <% if (userHasFavorited) { %>
+        <form
+          action="/monsters/<%= monster._id %>/favorited-by/<%= user._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="icon-btn" data-tooltip="untrack monster" type="submit">
+            <span class="material-symbols-outlined filled"> bookmark </span>
+          </button>
+        </form>
+        <% } else { %>
+        <form
+          action="/monsters/<%= monster._id %>/favorited-by/<%= user._id %>"
+          method="POST"
+        >
+          <button class="icon-btn" type="submit" data-tooltip="track monster">
+            <span class="material-symbols-outlined"> bookmark </span>
+          </button>
+        </form>
+        <% } %> <% if (monster.creator._id.equals(user._id)) { %>
+        <!-- Edit -->
+        <a href="/monsters/<%= monster._id %>/edit" data-tooltip="edit monster"
+          ><span class="material-symbols-outlined"> edit </span></a
+        >
+        <!-- Delete -->
+        <form
+          action="/monsters/<%= monster._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="icon-btn" type="submit" data-tooltip="delete monster">
+            <span class="material-symbols-outlined"> delete </span>
+          </button>
+        </form>
+        <% } %>
+      </section>

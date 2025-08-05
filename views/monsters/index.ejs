@@ -6,15 +6,7 @@
     <main>
       <h1>All Known Monsters</h1>
       <% monsters.forEach((monster) =>{ %>
-      <article>
-        <a href="/monsters/<%= monster._id %>">
-          <h3><%= monster.name %></h3>
-        </a>
-        <p><%= monster.type.name %></p>
-        <a href="/users/<%= monster.creator._id %>">
-          <p>Reported by: <%= monster.creator.username %></p>
-        </a>
-      </article>
+      <%- include("../partials/_monster-card-index.ejs", {monster}) %>
       <% }) %>
     </main>
     <footer><%- include("../partials/_footer.ejs") %></footer>

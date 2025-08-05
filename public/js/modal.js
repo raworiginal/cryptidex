@@ -6,8 +6,14 @@ const addPowerForm = document.querySelector("#add-power-form");
 const editPowerBtns = document.querySelectorAll(".edit-power-btn");
 const infoBtn = document.querySelector("#info-btn");
 const infoModal = document.querySelector("#info-modal");
+const closeModal = document.querySelector("#close-modal");
+
 infoBtn.addEventListener("click", () => {
   infoModal.showModal();
+});
+
+closeModal.addEventListener("click", () => {
+  infoModal.close();
 });
 
 if (addPowerBtn) {

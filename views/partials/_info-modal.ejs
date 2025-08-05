@@ -1,7 +1,11 @@
 <dialog id="info-modal">
   <article id="glossary">
-    <div class="top row"></div>
-    <h3>Monster Types</h3>
+    <div class="top-row">
+      <h3>Monster Types</h3>
+      <a href="#" id="close-modal"
+        ><span class="material-symbols-outlined"> close_small </span></a
+      >
+    </div>
     <ul>
       <% Glossary.monsterTypes.forEach((type)=>{ %>
       <li>

@@ -1,5 +1,19 @@
 <article class="monster-card-index">
-  <div class="top-row">
-    <h3><a href="/monsters/<%= monster. %>"></a><%= monster.name %></h3>
-  </div>
+  <h3><a href="/monsters/<%= monster._id %>"><%= monster.name %></a></h3>
+  <section class="motivation">
+    <p>
+      <%= monster.type.name %><br /><small
+        >motivation: <%= monster.type.motivation %></small
+      >
+    </p>
+  </section>
+  <footer class="footer">
+    <p>
+      Reported by
+      <a href="/users/<%= monster.creator._id %>"
+        ><%= monster.creator.username %></a
+      >
+    </p>
+    <p>tracked by <%= monster.favoritedByUsers.length %> hunter(s)</p>
+  </footer>
 </article>

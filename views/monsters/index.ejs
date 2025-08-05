@@ -4,10 +4,12 @@
   <body>
     <header><%- include('../partials/_nav-bar.ejs') %></header>
     <main>
-      <h1>All Known Monsters</h1>
-      <% monsters.forEach((monster) =>{ %>
-      <%- include("../partials/_monster-card-index.ejs", {monster}) %>
-      <% }) %>
+      <h1>All Reported Monsters</h1>
+      <div class="monsters-containter">
+        <% monsters.forEach((monster) =>{ %> <%-
+        include("../partials/_monster-card-index.ejs", {monster, user}) %> <% })
+        %>
+      </div>
     </main>
     <footer><%- include("../partials/_footer.ejs") %></footer>
   </body>

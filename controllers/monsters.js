@@ -85,8 +85,11 @@ router.post("/:monsterId/favorited-by/:userId", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const populatedMonsters = await Monster.find({}).populate("creator");
+    const currentUser = await User.findById(req.session.user._id);
+    console.log(currentUser);
     res.render("monsters/index.ejs", {
       monsters: populatedMonsters,
+      user: currentUser,
     });
   } catch (error) {
     console.error(error);
@@ -179,16 +182,14 @@ router.put("/:monsterId/powers/:powerId", async (req, res) => {
 router.delete("/:monsterId", async (req, res) => {
   try {
     await User.updateMany(
-      {
-        favoritedMonsters: req.params.monsterId,
-        createdMonsters: req.params.monsterId,
-      },
-      {
-        $pull: {
-          favoritedMonsters: req.params.monsterId,
-          createdMonsters: req.params.monsterId,
-        },
-      }
+      { favoritedMonsters: req.params.monsterId },
+      { $pull: { favoritedMonsters: req.params.monsterId } }
+    );
+
+    // Remove from createdMonsters
+    await User.updateMany(
+      { createdMonsters: req.params.monsterId },
+      { $pull: { createdMonsters: req.params.monsterId } }
     );
     await Monster.findByIdAndDelete(req.params.monsterId);
     res.redirect(`/users/${req.session.user._id}`);

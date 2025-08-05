@@ -1,7 +1,7 @@
 <dialog id="info-modal">
   <article id="glossary">
     <div class="top-row">
-      <h3>Monster Types</h3>
+      <h4>Monster Types</h4>
       <a href="#" id="close-modal"
         ><span class="material-symbols-outlined"> close_small </span></a
       >
@@ -21,6 +21,27 @@
         </tr>
         <% }) %>
       </tbody>
+    </table>
+    <h4>Tags</h4>
+    <table>
+      <thead>
+        <th scope="col">Tag</th>
+        <th scope="col">Type</th>
+        <th scope="col">Meaning</th>
+      </thead>
+      <% Glossary.rangeTags.forEach((tag)=>{ %>
+      <tr>
+        <th scope="row"><%= tag.name%></th>
+        <td>range</td>
+        <td><%= tag.meaning %></td>
+      </tr>
+      <% }) %> <% Glossary.otherTags.forEach((tag)=>{ %>
+      <tr>
+        <th scope="row"><%= tag.name %></th>
+        <td>descriptor</td>
+        <td><%= tag.meaning %></td>
+      </tr>
+      <% }) %>
     </table>
   </article>
 </dialog>

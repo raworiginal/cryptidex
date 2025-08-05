@@ -39,7 +39,7 @@ const Glossary = {
     {
       name: "barrier",
       meaning:
-        "Does harm to anything that passes through. Counts as armour against any attacks that pass through it.",
+        "Does harm to anything that passes through. Counts as armor against any attacks that pass through it.",
     },
     {
       name: "fire",
@@ -51,9 +51,9 @@ const Glossary = {
         "Pushes things around, allowing the monster 'force them where they want them' in addition to normal attack effects",
     },
     {
-      name: "ignore-armour",
+      name: "ignore-armor",
       meaning:
-        "Ignores protective armour. Armour has no effect of the harm of this attack. If the armour has the magic tag, the the attack needs both ignore-armour and magic tags to bypass the armour.",
+        "Ignores protective armor. Armour has no effect of the harm of this attack. If the armor has the magic tag, the the attack needs both ignore-armor and magic tags to bypass the armor.",
     },
     {
       name: "loud",
@@ -62,7 +62,7 @@ const Glossary = {
     {
       name: "magic",
       meaning:
-        "Enchanted, and so can affect certain creatures and armours that are proof against normal weapons or attacks",
+        "Enchanted, and so can affect certain creatures and armors that are proof against normal weapons or attacks",
     },
     {
       name: "messy",

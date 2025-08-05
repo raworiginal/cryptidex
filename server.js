@@ -17,7 +17,7 @@ const MongoStore = require("connect-mongo");
 mongoose.connect(process.env.MONGODB_URI);
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
-
+const Glossary = require("./models/data.js");
 /* ================== Middleware ================== */
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
   if (req.session.user) {
     res.redirect(`users/${req.session.user._id}`);
   } else {
-    res.render("index.ejs");
+    res.render("index.ejs", { Glossary });
   }
 });
 

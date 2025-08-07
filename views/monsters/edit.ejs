@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/_html-head.ejs', {title:`Edit ${monster.name}`}) %>
-  <body>
-    <header><%- include('../partials/_nav-bar.ejs') %></header>
-    <main>
-      <article>
-        <h1>Edit <%= monster.name %> Report</h1>
-        <form action="/monsters/<%= monster._id %>?_method=PUT" method="POST">
-          <label for="name">Name:</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value="<%= monster.name %>"
-            required
-          />
+	<%- include('../partials/_html-head.ejs', {title:`Edit ${monster.name}`})
+	%>
+	<body>
+		<header><%- include('../partials/_nav-bar.ejs') %></header>
+		<main>
+			<article>
+				<h1>Edit <%= monster.name %> Report</h1>
+				<form
+					action="/monsters/<%= monster._id %>?_method=PUT"
+					method="POST">
+					<label for="name">Name:</label>
+					<input
+						type="text"
+						name="name"
+						id="name"
+						value="<%= monster.name %>"
+						required />
 
-          <label for="type">Monster Type: </label>
-          <select name="type" id="type">
-            <option value="<%= types.indexOf(monster.type)%>">
-              <%= monster.type.name %>
-            </option>
-            <% types.forEach((type, index) =>{ %>
-            <option value="<%= index %>"><%= type.name %></option>
-            <% }); %>
-          </select>
+					<label for="type">Monster Type: </label>
+					<select
+						name="type"
+						id="type">
+						<option value="<%= types.indexOf(monster.type)%>">
+							<%= monster.type.name %>
+						</option>
+						<% types.forEach((type, index) =>{ %>
+						<option value="<%= index %>"><%= type.name %></option>
+						<% }); %>
+					</select>
 
-          <label for="weakness">Weakness</label>
-          <input
-            type="text"
-            name="weakness"
-            id="weakness"
-            value="<%= monster.weaknesses.join(', ') %>"
-          />
+					<label for="weakness">Weakness</label>
+					<input
+						type="text"
+						name="weakness"
+						id="weakness"
+						value="<%= monster.weaknesses.join(', ') %>" />
 
-          <label for="description">Description:</label>
-          <textarea name="description" id="description" rows="5">
+					<label for="description">Description:</label>
+					<textarea
+						name="description"
+						id="description"
+						rows="5">
 <%= monster.description %></textarea
-          >
+					>
 
-          <label for="armor">Armor:</label>
-          <input
-            type="number"
-            name="armor"
-            id="armor"
-            min="0"
-            value="<%= monster.armor %>"
-          />
+					<label for="armor">Armor:</label>
+					<input
+						type="number"
+						name="armor"
+						id="armor"
+						min="0"
+						value="<%= monster.armor %>" />
 
-          <button type="submit">Edit <%= monster.name %></button>
-        </form>
-      </article>
-    </main>
-    <%- include("../partials/_footer.ejs") %>
-  </body>
+					<button type="submit">Edit <%= monster.name %></button>
+				</form>
+			</article>
+		</main>
+		<%- include("../partials/_footer.ejs") %>
+	</body>
 </html>

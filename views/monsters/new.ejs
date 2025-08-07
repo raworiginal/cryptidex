@@ -1,38 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/_html-head.ejs', {title: 'New Monster'}) %>
-  <body>
-    <header><%- include('../partials/_nav-bar.ejs') %></header>
-    <main class="container">
-      <article class="monster-form">
-        <h1>Report a New Monster</h1>
-        <form action="/monsters" method="POST">
-          <label for="name">Name:</label>
-          <input type="text" name="name" id="name" required />
+	<%- include('../partials/_html-head.ejs', {title: 'New Monster'}) %>
+	<body>
+		<header><%- include('../partials/_nav-bar.ejs') %></header>
+		<main class="container">
+			<article class="monster-form">
+				<h1>Report a New Monster</h1>
+				<form
+					action="/monsters"
+					method="POST">
+					<label for="name">Name:</label>
+					<input
+						type="text"
+						name="name"
+						id="name"
+						required />
 
-          <label for="type">Monster Type: </label>
-          <select name="type" id="type">
-            <% types.forEach((type, index) =>{ %>
-            <option value="<%= index %>"><%= type.name %></option>
-            <% }); %>
-          </select>
+					<label for="type">Monster Type: </label>
+					<select
+						name="type"
+						id="type">
+						<% types.forEach((type, index) =>{ %>
+						<option value="<%= index %>"><%= type.name %></option>
+						<% }); %>
+					</select>
 
-          <label for="weaknesses">Weaknesses</label>
-          <input type="text" name="weaknesses" id="weaknesses" />
+					<label for="weaknesses">Weaknesses</label>
+					<input
+						type="text"
+						name="weaknesses"
+						id="weaknesses" />
 
-          <label for="description">Description:</label>
-          <textarea name="description" id="description" rows="5"></textarea>
+					<label for="description">Description:</label>
+					<textarea
+						name="description"
+						id="description"
+						rows="5"></textarea>
 
-          <label for="armor">Armor:</label>
-          <input type="number" name="armor" id="armor" min="0" />
+					<label for="armor">Armor:</label>
+					<input
+						type="number"
+						name="armor"
+						id="armor"
+						min="0" />
 
-          <label for="harmCapacity">Harm Capacity:</label>
-          <input type="number" name="harmCapacity" id="harmCapacity" min="1" />
+					<label for="harmCapacity">Harm Capacity:</label>
+					<input
+						type="number"
+						name="harmCapacity"
+						id="harmCapacity"
+						min="1" />
 
-          <button type="submit">Add Monster</button>
-        </form>
-      </article>
-    </main>
-    <%- include("../partials/_footer.ejs") %>
-  </body>
+					<button type="submit">Add Monster</button>
+				</form>
+			</article>
+		</main>
+		<%- include("../partials/_footer.ejs") %>
+	</body>
 </html>

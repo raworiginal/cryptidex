@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/_html-head.ejs', {title: 'Sign-up'}) %>
-  <body>
-    <header><%- include('../partials/_nav-bar.ejs') %></header>
-    <main class="container">
-      <article>
-        <h1>Create a new account!</h1>
-        <form action="/auth/sign-up" method="POST">
-          <fieldset>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" />
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" />
-            <label for="confirmPassword">Confirm Password:</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-            />
-          </fieldset>
-          <button type="submit">Sign up</button>
-        </form>
-      </article>
-    </main>
-    <footer><%- include("../partials/_footer.ejs") %></footer>
-  </body>
+	<%- include('../partials/_html-head.ejs', {title: 'Sign-up'}) %>
+	<body>
+		<header><%- include('../partials/_nav-bar.ejs') %></header>
+		<main class="container">
+			<article>
+				<h1>Create a new account!</h1>
+				<form
+					action="/auth/sign-up"
+					method="POST">
+					<fieldset>
+						<label for="username">Username:</label>
+						<input
+							type="text"
+							name="username"
+							id="username" />
+						<label for="password">Password:</label>
+						<input
+							type="password"
+							name="password"
+							id="password" />
+						<label for="confirmPassword">Confirm Password:</label>
+						<input
+							type="password"
+							name="confirmPassword"
+							id="confirmPassword" />
+					</fieldset>
+					<button type="submit">Sign up</button>
+				</form>
+			</article>
+		</main>
+		<footer><%- include("../partials/_footer.ejs") %></footer>
+	</body>
 </html>

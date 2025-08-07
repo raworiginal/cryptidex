@@ -1,47 +1,51 @@
-<dialog class="container" id="info-modal">
-  <article id="glossary">
-    <div class="top-row">
-      <h4>Monster Types</h4>
-      <a href="#" id="close-modal"
-        ><span class="material-symbols-outlined"> close_small </span></a
-      >
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Type</th>
-          <th scope="col">Motivation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% Glossary.monsterTypes.forEach((type)=>{ %>
-        <tr>
-          <th scope="row"><%= type.name %></th>
-          <td><%= type.motivation %></td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
-    <h4>Tags</h4>
-    <table>
-      <thead>
-        <th scope="col">Tag</th>
-        <th scope="col">Type</th>
-        <th scope="col">Meaning</th>
-      </thead>
-      <% Glossary.rangeTags.forEach((tag)=>{ %>
-      <tr>
-        <th scope="row"><%= tag.name%></th>
-        <td>range</td>
-        <td><%= tag.meaning %></td>
-      </tr>
-      <% }) %> <% Glossary.otherTags.forEach((tag)=>{ %>
-      <tr>
-        <th scope="row"><%= tag.name %></th>
-        <td>descriptor</td>
-        <td><%= tag.meaning %></td>
-      </tr>
-      <% }) %>
-    </table>
-  </article>
+<dialog
+	class="container"
+	id="info-modal">
+	<article id="glossary">
+		<div class="top-row">
+			<h4>Monster Types</h4>
+			<a
+				href="#"
+				id="close-modal"
+				><span class="material-symbols-outlined"> close_small </span></a
+			>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">Type</th>
+					<th scope="col">Motivation</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% Glossary.monsterTypes.forEach((type)=>{ %>
+				<tr>
+					<th scope="row"><%= type.name %></th>
+					<td><%= type.motivation %></td>
+				</tr>
+				<% }) %>
+			</tbody>
+		</table>
+		<h4>Tags</h4>
+		<table>
+			<thead>
+				<th scope="col">Tag</th>
+				<th scope="col">Type</th>
+				<th scope="col">Meaning</th>
+			</thead>
+			<% Glossary.rangeTags.forEach((tag)=>{ %>
+			<tr>
+				<th scope="row"><%= tag.name%></th>
+				<td>range</td>
+				<td><%= tag.meaning %></td>
+			</tr>
+			<% }) %> <% Glossary.otherTags.forEach((tag)=>{ %>
+			<tr>
+				<th scope="row"><%= tag.name %></th>
+				<td>descriptor</td>
+				<td><%= tag.meaning %></td>
+			</tr>
+			<% }) %>
+		</table>
+	</article>
 </dialog>
